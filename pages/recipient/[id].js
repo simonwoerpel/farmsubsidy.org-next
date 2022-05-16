@@ -29,27 +29,27 @@ export default function Recipient({ recipient, payments }) {
   );
 }
 
-// export async function getStaticPaths() {
-//   // pre-render the top recipients for each country
-//   const countries = await api("countries");
-//   const recipients = await Promise.all(
-//     countries.map(({ country }) =>
-//       api("recipients", {
-//         country,
-//         order_by: "-amount_sum",
-//         limit: process.env.PRERENDER_RECIPIENTS_COUNT || 1,
-//       })
-//     )
-//   );
-//   const paths = recipients
-//     .flat()
-//     .filter((r) => !!r)
-//     .map(({ id }) => ({ params: { id } }));
-//   return { paths, fallback: true };
-// }
+export async function getStaticPaths() {
+  // pre-render the top recipients for each country
+  const countries = await api("countries");
+  const recipients = await Promise.all(
+    countries.map(({ country }) =>
+      api("recipients", {
+        country,
+        order_by: "-amount_sum",
+        limit: process.env.PRERENDER_RECIPIENTS_COUNT || 1,
+      })
+    )
+  );
+  const paths = recipients
+    .flat()
+    .filter((r) => !!r)
+    .map(({ id }) => ({ params: { id } }));
+  return { paths, fallback: true };
+}
 
-// export async function getStaticProps({ params }) {
-export async function getServerSideProps({ params }) {
+// export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const recipients = await api("recipients", { recipient_id: params.id });
   const payments = await api("payments", { recipient_id: params.id });
 

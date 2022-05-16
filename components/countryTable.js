@@ -21,7 +21,7 @@ export default function CountryYearsTable({ activeYear, country, years }) {
               <CountryYearLink country={country} year={year} />
             </td>
             <td>{total_recipients}</td>
-            <td class="money">{amount_sum}&nbsp;€</td>
+            <td className="money">{amount_sum}&nbsp;€</td>
           </tr>
         ))}
       </tbody>
