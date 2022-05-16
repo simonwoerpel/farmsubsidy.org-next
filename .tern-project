@@ -1,0 +1,12 @@
+{
+  "libs": [
+    "browser",
+    "React"
+  ],
+  "plugins": {
+    "requirejs": {
+      "baseURL": "./",
+      "paths": {}
+    }
+  }
+}
