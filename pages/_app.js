@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import Layout from "../components/layout.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/farmsubsidy.css";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function FarmsubsidyApp({ Component, pageProps }) {
+  return (
+    <Layout {...pageProps}>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
-export default MyApp
+export default FarmsubsidyApp;
