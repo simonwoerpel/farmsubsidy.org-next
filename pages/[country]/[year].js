@@ -43,10 +43,8 @@ export default function CountryYear({ country, year, years, topRecipients }) {
 }
 
 export async function getStaticPaths() {
-  // Call an external API endpoint to get posts
   const results = await api("countries");
 
-  // Get the paths we want to pre-render based on posts
   const paths = [];
   results.map(({ country, years }) => {
     years.map((year) => {

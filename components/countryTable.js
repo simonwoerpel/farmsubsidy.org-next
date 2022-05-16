@@ -15,13 +15,13 @@ export default function CountryYearsTable({ activeYear, country, years }) {
         {years.map(({ year, total_recipients, amount_sum }) => (
           <tr
             key={year}
-            classNameName={activeYear == year ? "table-primary" : null}
+            className={activeYear == year ? "table-primary" : null}
           >
             <td>
               <CountryYearLink country={country} year={year} />
             </td>
             <td>{total_recipients}</td>
-            <td className="money">{amount_sum}&nbsp;€</td>
+            <td class="money">{amount_sum}&nbsp;€</td>
           </tr>
         ))}
       </tbody>

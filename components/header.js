@@ -25,7 +25,7 @@ export default function Header() {
                 <input
                   type="text"
                   name="q"
-                  value=""
+                  defaultValue=""
                   id="q"
                   placeholder="Enter a company name or place"
                   className="form-control input-lg"

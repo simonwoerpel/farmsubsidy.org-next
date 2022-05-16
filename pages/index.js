@@ -24,8 +24,8 @@ export default function Index({ countries }) {
             width="100%"
             height="352"
             frameBorder="0"
-            webkitallowfullscreen
-            mozallowfullscreen
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
             allowFullScreen
           ></iframe>
 
