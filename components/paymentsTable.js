@@ -12,17 +12,19 @@ export default function RecipientPaymentsTable({ payments }) {
         </tr>
       </thead>
       <tbody>
-        {payments.map(({ pk, scheme, year, amount }) => (
-          <tr key={pk}>
-            <td>
-              <YearLink year={year} />
-            </td>
-            <td>
-              <SchemeLink scheme={scheme} />
-            </td>
-            <td className="money">{amount}&nbsp;€</td>
-          </tr>
-        ))}
+        {payments
+          ? payments.map(({ pk, scheme, year, amount }) => (
+              <tr key={pk}>
+                <td>
+                  <YearLink year={year} />
+                </td>
+                <td>
+                  <SchemeLink scheme={scheme} />
+                </td>
+                <td className="money">{amount}&nbsp;€</td>
+              </tr>
+            ))
+          : "No data."}
       </tbody>
     </Table>
   );

@@ -1,29 +1,41 @@
+import { useRouter } from "next/router";
 import api from "../../utils/api.js";
+import LoadingPlaceholder from "../../components/placeholder.js";
 import RecipientPaymentsTable from "../../components/paymentsTable.js";
 
 export default function Recipient({ recipient, payments }) {
+  const router = useRouter();
+
   return (
     <div className="content col-lg-8 col-md-8 col-sm-7">
       <header className="page-heading">
-        <h2>{recipient.name}</h2>
+        <LoadingPlaceholder isLoading={router.isLoading}>
+          <h2>{recipient && recipient.name}</h2>
+        </LoadingPlaceholder>
       </header>
 
       <div className="section">
-        <p>
-          {recipient.name[0]} is a recipient of farm subsidies from{" "}
-          {recipient.country}.
-        </p>
-        <p>
-          {recipient.name} has received (at least){" "}
-          <strong>{recipient.amount_sum}&nbsp;€</strong> in payments of farm
-          subsidies from the European Union under{" "}
-          <abbr title="Common Agricultural Policy">the CAP</abbr>.
-        </p>
+        <LoadingPlaceholder as="p" isLoading={router.isLoading}>
+          <p>
+            {recipient && recipient.name[0]} is a recipient of farm subsidies from{" "}
+            {recipient && recipient.country}.
+          </p>
+        </LoadingPlaceholder>
+        <LoadingPlaceholder as="p" isLoading={router.isLoading}>
+          <p>
+            {recipient && recipient.name} has received (at least){" "}
+            <strong>{recipient && recipient.amount_sum}&nbsp;€</strong> in payments of farm
+            subsidies from the European Union under{" "}
+            <abbr title="Common Agricultural Policy">the CAP</abbr>.
+          </p>
+        </LoadingPlaceholder>
       </div>
 
       <div className="section">
         <h3>Details of payments</h3>
-        <RecipientPaymentsTable payments={payments} />
+        <LoadingPlaceholder as="p" isLoading={router.isLoading}>
+          <RecipientPaymentsTable payments={payments} />
+        </LoadingPlaceholder>
       </div>
     </div>
   );
@@ -34,10 +46,10 @@ export async function getStaticPaths() {
   const countries = await api("countries");
   const recipients = await Promise.all(
     countries.map(({ country }) =>
-      api("recipients", {
+      api("recipients_base", {
         country,
         order_by: "-amount_sum",
-        limit: process.env.PRERENDER_RECIPIENTS_COUNT || 1,
+        limit: process.env.PRERENDER_RECIPIENTS_COUNT || 5,
       })
     )
   );
@@ -48,7 +60,6 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-// export async function getServerSideProps({ params }) {
 export async function getStaticProps({ params }) {
   const recipients = await api("recipients", { recipient_id: params.id });
   const payments = await api("payments", { recipient_id: params.id });

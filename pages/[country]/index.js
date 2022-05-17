@@ -49,11 +49,15 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const countries = await api("countries", { country: params.country });
   const years = await api("years", { country: params.country });
-  const topRecipients = await api("recipients", {
+  const topRecipientIds = await api("recipients_base", {
     country: params.country,
     order_by: "-amount_sum",
     limit: 5,
   });
+  const topRecipientsRes = await Promise.all(
+    topRecipientIds.map(({ id }) => api("recipients", { recipient_id: id }))
+  );
+  const topRecipients = topRecipientsRes.flat();
 
   return { props: { country: countries[0], years, topRecipients } };
 }
