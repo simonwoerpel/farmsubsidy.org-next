@@ -64,6 +64,7 @@ export async function getStaticProps({ params }) {
   const years = await api("years", { country: params.country });
 
   const topRecipients = await api("recipients", {
+    recipient_name__null: false,
     country: params.country,
     year: params.year,
     order_by: "-amount_sum",

@@ -46,7 +46,7 @@ export async function getStaticPaths() {
   const countries = await api("countries");
   const recipients = await Promise.all(
     countries.map(({ country }) =>
-      api("recipients_base", {
+      api("recipients/base", {
         country,
         order_by: "-amount_sum",
         limit: process.env.PRERENDER_RECIPIENTS_COUNT || 5,

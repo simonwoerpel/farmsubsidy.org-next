@@ -49,7 +49,8 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const countries = await api("countries", { country: params.country });
   const years = await api("years", { country: params.country });
-  const topRecipientIds = await api("recipients_base", {
+  const topRecipientIds = await api("recipients/base", {
+    recipient_name__null: false,
     country: params.country,
     order_by: "-amount_sum",
     limit: 5,

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CountryLink } from "../utils/links.js";
+import { RecipientLink, CountryLink } from "../utils/links.js";
 import api from "../utils/api.js";
 
-export default function Index({ countries }) {
+export default function Index({ countries, topRecipients }) {
   return (
     <>
       <div className="row content-row">
@@ -74,6 +74,13 @@ export default function Index({ countries }) {
           <div className="right">
             <div className="sidebar-widget">
               <h3>All Time Top Recipients</h3>
+              <ul>
+                {topRecipients.map((r) => (
+                  <li key={r.id}>
+                    <RecipientLink {...r} />
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className="sidebar-widget">
@@ -120,5 +127,14 @@ export default function Index({ countries }) {
 
 export async function getStaticProps() {
   const countries = await api("countries");
-  return { props: { countries } };
+  const topRecipientIds = await api("recipients/base", {
+    recipient_name__null: false,
+    order_by: "-amount_sum",
+    limit: 5,
+  });
+  const topRecipientsRes = await Promise.all(
+    topRecipientIds.map(({ id }) => api("recipients", { recipient_id: id }))
+  );
+  const topRecipients = topRecipientsRes.flat();
+  return { props: { countries, topRecipients } };
 }
