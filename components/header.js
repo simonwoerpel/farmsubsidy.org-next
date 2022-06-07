@@ -1,12 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Navbar from "./navbar.js";
+import SimpleSearchForm from "./simpleSearchForm.js";
 
-export default function Header() {
+export default function Header({ ...navProps }) {
   return (
-    <header className="header">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
+    <header>
+      <Container className="fs-header" fluid>
+        <Row className="fs-header__row">
+          <Col md={6}>
             <div className="the-cow">
               <Link href="/">
                 <a>
@@ -18,86 +24,41 @@ export default function Header() {
                 </a>
               </Link>
             </div>
-          </div>
-          <div className="col-md-6 search-form">
-            <form action="/search/" method="get" acceptCharset="utf-8">
-              <div className="input-group">
-                <input
-                  type="text"
-                  name="q"
-                  defaultValue=""
-                  id="q"
-                  placeholder="Enter a company name or place"
-                  className="form-control input-lg"
-                />
-                <span className="input-group-btn">
-                  <button className="btn btn-fs-search input-lg" type="submit">
-                    Search
-                  </button>
-                </span>
-              </div>
-              <small className="search-examples">
-                e.g.{" "}
-                <Link href="/search/?q=nestle">
-                  <a>Nestle</a>
-                </Link>{" "}
-                or{" "}
-                <Link href="/search/?q=windsor">
-                  <a>Windsor</a>
-                </Link>
-              </small>
-            </form>
-          </div>
-        </div>
-        <div
-          className="navbar navbar-dark navbar-expand-sm navbar-fs"
-          role="navigation"
-        >
-          <Link href="/">
-            <a className="navbar-brand">
-              <strong>FarmSubsidy</strong>.org
-            </a>
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#menu"
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="navbar-collapse collapse" id="menu">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item ">
-                <Link href="/countries/">
-                  <a className="nav-link">Countries</a>
-                </Link>
-              </li>
-              <li className="nav-item ">
-                <Link href="/faq/">
-                  <a className="nav-link">FAQ</a>
-                </Link>
-              </li>
-              <li>
-                <a
-                  className="nav-link twitter"
-                  href="https://twitter.com/farmsubsidy/"
-                >
-                  <Image
-                    src="/images/twitter_logo.png"
-                    alt="Twitter Bird"
-                    width={25}
-                    height={20}
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
+      <Navbar {...navProps} />
+    </header>
+  );
+}
+
+export function Hero({ countries, years }) {
+  return (
+    <header>
+      <Container className="fs-header fs-header--hero" fluid>
+        <Row className="fs-header__row">
+          <Col md={3} />
+          <Col md={6}>
+            <h1 className="hero-claim">
+              The European Union spends around €59 billion a year on farm
+              subsidies. This site tells you who receives the money.
+            </h1>
+            <SimpleSearchForm size="lg" />
+            <Link href="/countries">
+              <Button size="lg" variant="secondary">
+                Countries
+              </Button>
+            </Link>
+            <Link href="/schemes">
+              <Button size="lg" variant="secondary">
+                Schemes
+              </Button>
+            </Link>
+          </Col>
+          <Col md={3} />
+        </Row>
+      </Container>
+      <Navbar countries={countries} years={years} hideSearchForm />
     </header>
   );
 }

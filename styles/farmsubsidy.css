@@ -1,6 +1,10 @@
 :root {
   --main-color: #139744;
   --main-color-trans: rgba(19, 151, 68, 0.85);
+  --bs-green: #139744;
+  --bs-primary: #139744;
+  --bs-primary-rgb: 19, 151, 68;
+  --bs-bg-opacity: 0.85;
   --gray: #c6c6c4;
 }
 
@@ -24,8 +28,59 @@ h4 {
   margin-top: 2rem;
 }
 
-.main {
-  flex: 1 0 auto;
+.fs-header {
+  position: relative;
+  background: url("/images/header.jpg");
+  background-size: cover;
+}
+
+.fs-header--hero {
+  position: relative;
+  padding-top: 30vh;
+  height: 80vh;
+  background: url("/images/header.jpg");
+  background-size: cover;
+}
+
+.fs-header--hero .hero-claim {
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  /* font-weight: normal; */
+}
+
+.fs-main,
+.fs-header__row {
+  max-width: 1800px;
+}
+.fs-content {
+  padding: 0 20px 20px 20px;
+  background-color: #fff;
+}
+
+.fs-sidebar {
+  padding-top: 15px;
+  background-color: #eee;
+}
+
+.fs-sidebar__widget {
+  margin-bottom: 15px;
+}
+
+.fs-search-form {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.fs-search-form .search-examples {
+  color: #fff;
+  margin-left: 20px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.fs-search-form .search-examples > a {
+  color: #fff;
+  text-decoration: underline;
 }
 
 .btn-fs-search,
@@ -34,32 +89,11 @@ h4 {
   background-color: var(--main-color);
 }
 
-.header {
-  background: url("/images/header.jpg");
-  background-size: cover;
-}
-
 .tagline {
   color: #fff;
   font-size: 24px;
   text-shadow: 1px 1px 1px #000;
   padding: 10px;
-}
-
-.search-form {
-  padding-top: 10rem;
-  padding-bottom: 2rem;
-}
-
-.search-form .search-examples {
-  color: #fff;
-  margin-left: 20px;
-  text-shadow: 1px 1px 1px #000;
-}
-
-.search-form .search-examples > a {
-  color: #fff;
-  text-decoration: underline;
 }
 
 .the-cow {
@@ -134,37 +168,8 @@ h4 {
   background-color: #fff;
 }
 
-.content-row {
-  background-color: #fff;
-}
-
-.content {
-  padding: 0 20px;
-  background-color: #fff;
-}
-
 .page-heading {
   margin: 2rem 0;
-}
-
-.sidebar {
-  background-color: #eee;
-}
-
-.right {
-  padding-top: 15px;
-  background-color: #eee;
-}
-
-.sidebar-widget {
-  background-color: #fff;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 2px;
-}
-
-.sidebar-widget h3:first-child {
-  margin-top: 0;
 }
 
 .footer {

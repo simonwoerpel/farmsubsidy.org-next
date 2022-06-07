@@ -1,10 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Header from "./header.js";
-import MainContainer from "./container.js";
 import Footer from "./footer.js";
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const DEFAULT_DESCRIPTION =
   "FarmSubsidy shows who gets subsidies under the European Common Agricultural Policy";
 
@@ -66,8 +64,7 @@ export default function Layout({ title, description, children }) {
           content="Ky0DwP0Po8pm91bBwCkbbNt1Qf6FLXut_7Kd1jvSGFc"
         />
       </Head>
-      <Header />
-      <MainContainer>{children}</MainContainer>
+      {children}
       <Footer />
     </>
   );

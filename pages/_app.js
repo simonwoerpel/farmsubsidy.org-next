@@ -1,16 +1,10 @@
 import { SSRProvider } from "@react-aria/ssr";
-import Layout from "../components/layout.js";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/farmsubsidy.css";
+import "~/styles/farmsubsidy.scss";
 
-function FarmsubsidyApp({ Component, pageProps }) {
+export default function FarmsubsidyApp({ Component, pageProps }) {
   return (
     <SSRProvider>
-      <Layout {...pageProps}>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </SSRProvider>
   );
 }
-
-export default FarmsubsidyApp;
