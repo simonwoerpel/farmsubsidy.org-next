@@ -14,6 +14,23 @@ import { CountryLink } from "~/lib/links.js";
 import getCachedContext, { COUNTRYNAMES } from "~/lib/context.js";
 import api, { useApi, SEARCH_ENDPOINTS, getLocationParams } from "~/lib/api.js";
 
+// initial queries
+const INITIAL_QUERIES = {
+  schemes: {
+    scheme__null: false,
+    amount__null: 0,
+    order_by: "-amount_sum",
+    limit: 25,
+  },
+  recipients: {
+    recipient_name__null: false,
+    order_by: "-amount_sum",
+    amount__null: false,
+    year: 2020,
+    limit: 25,
+  },
+};
+
 const ensureParams = (p) => {
   // make sure not to broad search
   if (!p.q && !p.year && !p.country && !p.scheme && !p.location) {
@@ -93,8 +110,9 @@ export default function Search({ recipients, schemes, ...ctx }) {
   const router = useRouter();
   const { search: endpoint = SEARCH_ENDPOINTS[0], p: page = 1 } =
     getLocationParams();
-  const data = endpoint === "Recipients" ? recipients : schemes;
-  const [apiState, updateApiState] = useApi(data);
+  const apiEndpoint = endpoint.toLowerCase();
+  const initialQuery = INITIAL_QUERIES[apiEndpoint];
+  const [apiState, updateApiState] = useApi(apiEndpoint, initialQuery);
 
   const handleParamsChange = (query) =>
     updateApiState(ensureParams({ ...router.query, ...query }));
@@ -110,7 +128,6 @@ export default function Search({ recipients, schemes, ...ctx }) {
   const tableProps = {
     apiState,
     updateApiState,
-    rows: data.results,
   };
 
   const { search, ...query } = apiState.query;
@@ -142,27 +159,5 @@ export default function Search({ recipients, schemes, ...ctx }) {
 
 export async function getStaticProps() {
   const ctx = await getCachedContext();
-  // initial results
-  const schemes = await api(
-    "schemes",
-    {
-      scheme__null: false,
-      amount__gt: 0,
-      order_by: "-amount_sum",
-      limit: 25,
-    },
-    true
-  );
-  const recipients = await api(
-    "recipients",
-    {
-      recipient_name__null: false,
-      order_by: "-amount_sum",
-      amount__null: false,
-      year: 2020,
-      limit: 25,
-    },
-    true
-  );
-  return { props: { recipients, schemes, ...ctx } };
+  return { props: { ...ctx } };
 }

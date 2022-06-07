@@ -3,9 +3,14 @@ import SchemesTable from "~/components/schemesTable.js";
 import getCachedContext from "~/lib/context.js";
 import api, { useApi } from "~/lib/api.js";
 
-export default function Schemes({ schemes, ...ctx }) {
-  const [apiState, updateApiState] = useApi(schemes);
-
+export default function Schemes({ ...ctx }) {
+  const query = {
+    scheme__null: false,
+    amount__null: false,
+    order_by: "-amount_sum",
+    limit: 25,
+  };
+  const [apiState, updateApiState] = useApi("schemes", query);
   return (
     <Page {...ctx}>
       <header className="page-heading">
@@ -21,15 +26,5 @@ export default function Schemes({ schemes, ...ctx }) {
 
 export async function getStaticProps() {
   const ctx = await getCachedContext();
-  const schemes = await api(
-    "schemes",
-    {
-      scheme__null: false,
-      amount__null: false,
-      order_by: "-amount_sum",
-      limit: 25,
-    },
-    true
-  );
-  return { props: { schemes, ...ctx } };
+  return { props: { ...ctx } };
 }
