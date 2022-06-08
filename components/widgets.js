@@ -1,6 +1,8 @@
+import Link from "next/link";
 import Card from "react-bootstrap/Card";
 import { Numeric } from "./util.js";
 import Flag from "./countryFlag.js";
+import DownloadCSV from "./downloadCsv.js";
 
 export function AmountWidget({ title, value, country, year, children }) {
   return (
@@ -19,6 +21,22 @@ export function AmountWidget({ title, value, country, year, children }) {
       <Card.Footer className="text-muted">
         Please note that these numbers only summarise the contents of our
         database and are <em>not</em> official statistics.
+      </Card.Footer>
+    </Card>
+  );
+}
+
+export function DownloadWidget({ title = "Data", ...props }) {
+  return (
+    <Card className="fs-sidebar__widget">
+      <Card.Header>{title}</Card.Header>
+      <Card.Body>
+        <DownloadCSV {...props} />
+      </Card.Body>
+      <Card.Footer className="text-muted">
+        <Link href="/data">
+          <a>Information about the data</a>
+        </Link>
       </Card.Footer>
     </Card>
   );

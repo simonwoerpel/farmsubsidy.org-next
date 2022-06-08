@@ -84,8 +84,7 @@ export default function SearchForm({
             <Dropdown.Item
               key={c.country}
               disabled={
-                country === c.country ||
-                (!!year && years.indexOf(parseInt(year)) < 0)
+                country === c.country || (!!year && years.indexOf(year) < 0)
               }
               onClick={() => handleParamsChange({ country: c.country })}
             >
@@ -110,8 +109,7 @@ export default function SearchForm({
             <Dropdown.Item
               key={y.year}
               disabled={
-                year === y.year.toString() ||
-                (country && y.countries.indexOf(country) < 0)
+                year === y.year || (country && y.countries.indexOf(country) < 0)
               }
               onClick={() => handleParamsChange({ year: y.year.toString() })}
             >

@@ -4,11 +4,13 @@ import Stack from "react-bootstrap/Stack";
 import Badge from "react-bootstrap/Badge";
 import CloseButton from "react-bootstrap/CloseButton";
 import Placeholder from "react-bootstrap/Placeholder";
-import { Page } from "~/components/pages.js";
+import { CustomPage } from "~/components/pages.js";
+import { Content, Sidebar } from "~/components/container.js";
 import SearchForm from "~/components/searchForm.js";
 import ErrorAlert from "~/components/errorAlert.js";
 import SchemesTable from "~/components/schemesTable.js";
 import { RecipientsSearchTable } from "~/components/recipientsTable.js";
+import { DownloadWidget } from "~/components/widgets.js";
 import { Numeric } from "~/components/util.js";
 import { CountryLink } from "~/lib/links.js";
 import getCachedContext, { COUNTRYNAMES } from "~/lib/context.js";
@@ -133,27 +135,36 @@ export default function Search({ recipients, schemes, ...ctx }) {
   const { search, ...query } = apiState.query;
 
   return (
-    <Page hideSearchForm {...ctx}>
-      <header className="page-heading">
-        <h1>Search</h1>
-      </header>
+    <CustomPage hideSearchForm {...ctx}>
+      <Content>
+        <header className="page-heading">
+          <h1>Search</h1>
+        </header>
 
-      <SearchForm {...formProps} />
-      <ResultHeadline
-        loading={apiState.loading}
-        count={apiState.totalRows}
-        endpoint={endpoint}
-        {...query}
-      />
-      <ActiveFilters handleClear={handleParamsChange} filters={query} />
-      <span className="text-muted">Page {page}</span>
+        <SearchForm {...formProps} />
+        <ResultHeadline
+          loading={apiState.loading}
+          count={apiState.totalRows}
+          endpoint={endpoint}
+          {...query}
+        />
+        <ActiveFilters handleClear={handleParamsChange} filters={query} />
+        <span className="text-muted">Page {page}</span>
 
-      {endpoint === "Recipients" ? (
-        <RecipientsSearchTable {...tableProps} />
-      ) : (
-        <SchemesTable {...tableProps} />
-      )}
-    </Page>
+        {endpoint === "Recipients" ? (
+          <RecipientsSearchTable {...tableProps} />
+        ) : (
+          <SchemesTable {...tableProps} />
+        )}
+      </Content>
+      <Sidebar>
+        <DownloadWidget
+          count={apiState.rows.length}
+          endpoint={apiState.endpoint}
+          query={apiState.apiQuery}
+        />
+      </Sidebar>
+    </CustomPage>
   );
 }
 

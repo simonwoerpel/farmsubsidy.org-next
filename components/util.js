@@ -16,7 +16,7 @@ const INTWORDS = {
 // https://github.com/django/django/blob/main/django/contrib/humanize/templatetags/humanize.py#L86
 const intWord = (val) => {
   val = parseFloat(val);
-  if (val < 1000000) return val.toFixed(2);
+  if (val < 1000000) return FMT.format(val);
   for (const [exponent, converter] of Object.entries(INTWORDS)) {
     const large_number = 10 ** exponent;
     if (val < large_number * 1000) {
@@ -25,7 +25,7 @@ const intWord = (val) => {
       return converter(val);
     }
   }
-  return val;
+  return FMT.format(val);
 };
 
 function IntWord({ value, append }) {
