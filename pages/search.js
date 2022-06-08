@@ -108,7 +108,7 @@ const ActiveFilters = ({ handleClear, filters }) => {
   );
 };
 
-export default function Search({ recipients, schemes, ...ctx }) {
+export default function Search({ ...ctx }) {
   const router = useRouter();
   const { search: endpoint = SEARCH_ENDPOINTS[0], p: page = 1 } =
     getLocationParams();
@@ -129,7 +129,7 @@ export default function Search({ recipients, schemes, ...ctx }) {
 
   const tableProps = {
     apiState,
-    updateApiState,
+    updateApiState: handleParamsChange,
   };
 
   const { search, ...query } = apiState.query;
@@ -158,11 +158,7 @@ export default function Search({ recipients, schemes, ...ctx }) {
         )}
       </Content>
       <Sidebar>
-        <DownloadWidget
-          count={apiState.rows.length}
-          endpoint={apiState.endpoint}
-          query={apiState.apiQuery}
-        />
+        <DownloadWidget {...apiState} />
       </Sidebar>
     </CustomPage>
   );

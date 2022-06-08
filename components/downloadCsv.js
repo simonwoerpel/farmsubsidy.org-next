@@ -15,27 +15,35 @@ const toB64 = (value) => {
     : Buffer.from(value).toString("base64"); // node build
 };
 
-export default function DownloadCSV({ endpoint, query, count }) {
+export default function DownloadCSV({
+  endpoint,
+  apiQuery,
+  rows,
+  loading: apiLoading,
+}) {
   const router = useRouter();
-  query = { ...query, ...EXPORT_PARAMS };
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState();
 
   useEffect(() => {
-    setLoading(true);
-    api(endpoint, query).then((res) => setResult(res));
-    setLoading(false);
-  }, [query]);
+    if (!apiLoading && !loading) {
+      const query = { ...apiQuery, ...EXPORT_PARAMS };
+      setLoading(true);
+      api(endpoint, query).then((res) => setResult(res));
+      setLoading(false);
+    }
+  }, [apiQuery]);
 
+  const count = rows.length;
   const dataUrl = result ? "data:text/csv;base64," + toB64(result) : null;
-  const nameParams = { ...query, ...router.query };
+  const nameParams = { ...apiQuery, ...router.query };
   const fileName =
     "farmsubsidy_" +
     Object.entries(nameParams)
       .filter(([k, v]) => SEARCH_PARAMS.indexOf(k) > -1)
       .map(([k, v]) => slugify(v.toString()).substr(0, 25))
       .join("_") +
-    `_page${query.p || 1}.csv`;
+    `_page${apiQuery.p || 1}.csv`;
 
   return (
     <Button

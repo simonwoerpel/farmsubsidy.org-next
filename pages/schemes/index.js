@@ -26,11 +26,7 @@ export default function Schemes({ ...ctx }) {
         </div>
       </Content>
       <Sidebar>
-        <DownloadWidget
-          count={apiState.rows.length}
-          endpoint={apiState.endpoint}
-          query={apiState.apiQuery}
-        />
+        <DownloadWidget {...apiState} />
       </Sidebar>
     </CustomPage>
   );
