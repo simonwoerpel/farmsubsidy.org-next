@@ -44,6 +44,7 @@ export default function RecipientPaymentsTable({ payments }) {
 
   return (
     <DataTable
+      title="Payments"
       columns={Object.values(COLUMNS)}
       data={payments}
       defaultSortFieldId="year"

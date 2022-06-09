@@ -22,8 +22,8 @@ export default function ApiTable({
   columns,
   apiState: { rows, totalRows, error, loading, tableProps, needServer },
   updateApiState,
+  ...props
 }) {
-
   const handleSort = ({ column }, sortDirection) => {
     const order_by = sortDirection === "asc" ? column : `-${column}`;
     updateApiState({ order_by });
@@ -31,7 +31,7 @@ export default function ApiTable({
   const handlePageChange = (p) => updateApiState({ p });
   const handlePerRowsChange = (limit, p) => updateApiState({ p, limit });
 
-  const props = needServer
+  props = needServer
     ? {
         sortServer: true,
         onSort: handleSort,
@@ -42,8 +42,9 @@ export default function ApiTable({
         disabled: loading,
         paginationTotalRows: totalRows,
         ...tableProps,
+        ...props,
       }
-    : { pagination: false };
+    : { pagination: false, ...props };
 
   // avoid redundant re-rendering
   // https://react-data-table-component.netlify.app/?path=/docs/performance-optimization--page#optimizing-functionalhook-components

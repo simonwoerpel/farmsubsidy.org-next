@@ -127,12 +127,21 @@ export default function Search({ ...ctx }) {
     isLoading: apiState.loading,
   };
 
+  const { search, ...query } = apiState.query;
+
   const tableProps = {
     apiState,
     updateApiState: handleParamsChange,
+    title: (
+      <ResultHeadline
+        loading={apiState.loading}
+        count={apiState.totalRows}
+        endpoint={endpoint}
+        {...query}
+      />
+    ),
+    actions: <ActiveFilters handleClear={handleParamsChange} filters={query} />,
   };
-
-  const { search, ...query } = apiState.query;
 
   return (
     <CustomPage hideSearchForm {...ctx}>
@@ -142,14 +151,6 @@ export default function Search({ ...ctx }) {
         </header>
 
         <SearchForm {...formProps} />
-        <ResultHeadline
-          loading={apiState.loading}
-          count={apiState.totalRows}
-          endpoint={endpoint}
-          {...query}
-        />
-        <ActiveFilters handleClear={handleParamsChange} filters={query} />
-        <span className="text-muted">Page {page}</span>
 
         {endpoint === "Recipients" ? (
           <RecipientsSearchTable {...tableProps} />

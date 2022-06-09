@@ -4,7 +4,7 @@ import { SchemeLink, SchemeYearLink, CountryLink } from "~/lib/links.js";
 
 const COLUMNS = {
   name: {
-    name: "Scheme",
+    name: "Name",
     selector: (r) => r.name,
     cell: (r) => <SchemeLink {...r} />,
   },

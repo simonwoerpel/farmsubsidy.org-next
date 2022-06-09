@@ -6,7 +6,7 @@ import { DownloadCSVSync } from "./downloadCsv.js";
 
 const COLUMNS = {
   country: {
-    name: "Country",
+    name: "Name",
     selector: (r) => r.country,
     cell: (r) => <CountryLink {...r} />,
     sortable: true,

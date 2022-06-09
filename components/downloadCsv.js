@@ -56,7 +56,6 @@ export default function DownloadCSV({
 
   useEffect(() => {
     if (!apiLoading && !loading) {
-      console.log(query);
       setLoading(true);
       api(endpoint, query).then((res) => setResult(res));
       setLoading(false);

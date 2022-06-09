@@ -6,12 +6,10 @@ export default function Countries({ countries, years }) {
   return (
     <Page countries={countries} years={years}>
       <header className="page-heading">
-        <h2>Browse data by country</h2>
+        <h1>Countries</h1>
       </header>
 
-      <div className="section">
-        <CountriesTable countries={countries} />
-      </div>
+      <CountriesTable countries={countries} />
     </Page>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { COUNTRYNAMES } from "~/lib/context.js";
 import { CountryLink, CountryYearLink } from "~/lib/links.js";
+import styles from "./breadcrumb.module.scss";
 
 const ROUTES = {
   "/[slug]": ({ slug }) => ({ label: slug }), // md pages
@@ -41,9 +42,9 @@ export default function FSBreadcrumb() {
   const crumbs = getBreadcrumbs(router);
   const leaf = crumbs.pop();
   return (
-    <Breadcrumb>
+    <Breadcrumb className={styles.root}>
       <Link href="/" passHref>
-        <Breadcrumb.Item>FarmSubsidy.org</Breadcrumb.Item>
+        <Breadcrumb.Item>Start</Breadcrumb.Item>
       </Link>
       {crumbs.map(({ label, url }) => (
         <Link href={url} passHref key={url}>

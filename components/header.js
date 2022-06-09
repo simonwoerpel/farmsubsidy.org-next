@@ -6,59 +6,79 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Navbar from "./navbar.js";
 import SimpleSearchForm from "./simpleSearchForm.js";
+import styles from "./header.module.scss";
 
-export default function Header({ ...navProps }) {
+function CowHeader({ ...navProps }) {
   return (
-    <header>
-      <Container className="fs-header" fluid>
-        <Row className="fs-header__row">
-          <Col md={6}>
-            <div className="the-cow">
-              <Link href="/">
-                <a>
-                  <Image
-                    src="/images/cow.svg"
-                    alt="FarmSubsidy Euro Cow"
-                    layout="fill"
-                  />
-                </a>
-              </Link>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+    <>
+      <header>
+        <Container className={styles.root} fluid>
+          <Row>
+            <Col md={6}>
+              <div className={styles.cow}>
+                <Link href="/">
+                  <a>
+                    <Image
+                      className={styles.cowImg}
+                      src="/images/cow.svg"
+                      alt="FarmSubsidy Euro Cow"
+                      layout="fill"
+                    />
+                  </a>
+                </Link>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </header>
       <Navbar {...navProps} />
-    </header>
+    </>
   );
 }
 
-export function Hero({ countries, years }) {
+export default function Header({ ...navProps }) {
   return (
-    <header>
-      <Container className="fs-header fs-header--hero" fluid>
-        <Row className="fs-header__row">
-          <Col md={3} />
-          <Col md={6}>
-            <h1 className="hero-claim">
-              The European Union spends around €59 billion a year on farm
-              subsidies. This site tells you who receives the money.
-            </h1>
-            <SimpleSearchForm size="lg" />
-            <Link href="/countries">
-              <Button size="lg" variant="secondary">
-                Countries
-              </Button>
-            </Link>
-            <Link href="/schemes">
-              <Button size="lg" variant="secondary">
-                Schemes
-              </Button>
-            </Link>
-          </Col>
-          <Col md={3} />
-        </Row>
-      </Container>
-      <Navbar countries={countries} years={years} hideSearchForm />
-    </header>
+    <>
+      <header>
+        <Container className={styles.root} fluid />
+      </header>
+      <Navbar {...navProps} />
+    </>
+  );
+}
+
+export function Hero({ ...navProps }) {
+  return (
+    <>
+      <header className={styles.root}>
+        <Container className={styles.hero} fluid>
+          <Row>
+            <Col md={3} />
+            <Col md={6} className={styles.heroInner}>
+              <h1 className={styles.heroClaim}>
+                The European Union spends around €59 billion a year on farm
+                subsidies.
+                <br />
+                <br />
+                This site tells you who receives the money.
+              </h1>
+              <SimpleSearchForm size="lg" />
+              <Link href="/countries" passHref>
+                <Button size="lg" variant="secondary">
+                  Countries
+                </Button>
+              </Link>
+              <Link href="/schemes" passHref>
+                <Button size="lg" variant="secondary">
+                  Schemes
+                </Button>
+              </Link>
+            </Col>
+            <Col md={3} />
+          </Row>
+        </Container>
+      </header>
+      <Navbar hideSearchForm {...navProps} />
+    </>
   );
 }

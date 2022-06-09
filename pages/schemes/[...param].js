@@ -13,20 +13,17 @@ export default function Country({ scheme, topRecipients, ...ctx }) {
   return (
     <CustomPage {...ctx}>
       <Content>
-        <header className="page-heading">
-          <h2>
-            EU Farm subsidies
-            <br />
-            <small>{scheme.name}</small>
-          </h2>
+        <header>
+          <h1>Scheme</h1>
+          <h3>{scheme.name}</h3>
         </header>
 
         <div className="section">
-          <h3>Top recipients</h3>
-          <RecipientsTable recipients={topRecipients} />
-          <p className="more_info">
-            <SchemeLink.Recipients {...scheme} />
-          </p>
+          <RecipientsTable
+            title="Top recipients"
+            recipients={topRecipients}
+            actions={<SchemeLink.Recipients {...scheme} />}
+          />
         </div>
       </Content>
       <Sidebar>

@@ -36,7 +36,7 @@ function IntWord({ value, append }) {
   value = intWord(value);
 
   return (
-    <span>
+    <span className="intword">
       {value}
       {append}
     </span>
@@ -51,7 +51,7 @@ function Numeric({ value, append }) {
   append = !!append ? `\u00A0${append}` : "";
 
   return (
-    <span>
+    <span className="numeric">
       {FMT.format(value)}
       {append}
     </span>

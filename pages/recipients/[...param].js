@@ -17,27 +17,22 @@ export default function Recipient({ recipient, payments = [], ...ctx }) {
   return (
     <CustomPage {...ctx}>
       <Content>
-        <header className="page-heading">
+        <header>
           <LoadingPlaceholder isLoading={router.isLoading}>
-            <h2>{recipient && recipient.name[0]}</h2>
+            <h1>{recipient && recipient.name[0]}</h1>
           </LoadingPlaceholder>
         </header>
 
-        <div className="section">
-          <LoadingPlaceholder as="p" isLoading={router.isLoading}>
-            <p>
-              {recipient && recipient.name[0]} is a recipient of farm subsidies
-              from {recipient && <CountryLink country={recipient.country} />}.
-            </p>
-          </LoadingPlaceholder>
-        </div>
+        <LoadingPlaceholder as="p" isLoading={router.isLoading}>
+          <p>
+            {recipient && recipient.name[0]} is a recipient of farm subsidies
+            from {recipient && <CountryLink country={recipient.country} />}.
+          </p>
+        </LoadingPlaceholder>
 
-        <div className="section">
-          <h3>Payments</h3>
-          <LoadingPlaceholder as="p" isLoading={router.isLoading}>
-            <RecipientPaymentsTable payments={payments} />
-          </LoadingPlaceholder>
-        </div>
+        <LoadingPlaceholder as="p" isLoading={router.isLoading}>
+          <RecipientPaymentsTable payments={payments} />
+        </LoadingPlaceholder>
       </Content>
       <Sidebar>
         {recipient && (

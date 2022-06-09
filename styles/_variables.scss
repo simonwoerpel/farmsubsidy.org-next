@@ -1,0 +1,27 @@
+@import "../node_modules/bootstrap/scss/functions";
+// $primary: #139744;
+// $primary: #669613;
+$primary: #629f41;
+// $secondary: #40619e;
+$secondary: #9e4061;
+$warning: #964313;
+$danger: #961366;
+$primary-trans: rgba(98, 159, 65, 0.85);
+$green: #139744;
+$gray: #c6c6c4;
+$grid-gutter-width: 3rem;
+$body-bg: lighten($gray, 15%);
+
+$link-decoration: none;
+$link-hover-decoration: underline;
+
+// flat
+$border-radius: 0;
+
+// typo
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap");
+$font-family-base: "Source Sans Pro", sans-serif;
+$headings-font-family: "Source Sans Pro", sans-serif;
+$headings-font-weight: 700;
+
+@import "../node_modules/bootstrap/scss/variables";

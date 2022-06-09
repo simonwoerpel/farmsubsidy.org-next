@@ -1,0 +1,45 @@
+@import "~/styles/variables";
+
+.root {
+  position: relative;
+  min-height: 100px;
+  background: url("/images/header.jpg");
+  background-size: cover;
+}
+
+.hero {
+  padding-top: 20vh;
+  height: 60vh;
+}
+
+.heroClaim {
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: $grid-gutter-width;
+  font-weight: 900;
+}
+
+.heroInner {
+  padding: $grid-gutter-width;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.cow {
+  display: none;
+  display: block;
+  width: 220px;
+  height: 220px;
+  position: relative;
+  bottom: -50px;
+  background-color: $primary-trans;
+  border-radius: 150px;
+  clip-path: inset(0 0 50px 0);
+}
+
+.cowImg {
+  position: absolute;
+  top: 5px;
+  left: 15px !important;
+  z-index: 100;
+}

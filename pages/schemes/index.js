@@ -17,13 +17,15 @@ export default function Schemes({ ...ctx }) {
   return (
     <CustomPage {...ctx}>
       <Content>
-        <header className="page-heading">
-          <h2>Schemes</h2>
+        <header>
+          <h1>Schemes</h1>
         </header>
 
-        <div className="section">
-          <SchemesTable apiState={apiState} updateApiState={updateApiState} />
-        </div>
+        <SchemesTable
+          title=" "
+          apiState={apiState}
+          updateApiState={updateApiState}
+        />
       </Content>
       <Sidebar>
         <DownloadWidget {...apiState} />

@@ -1,0 +1,19 @@
+@import "~/styles/variables";
+
+.root {
+  background-color: #222;
+  width: 100%;
+  // position: absolute;
+  bottom: 0;
+}
+
+.footer {
+  max-width: 1800px;
+  padding-top: $grid-gutter-width;
+  padding-bottom: $grid-gutter-width;
+  color: $gray;
+
+  a {
+    color: $gray;
+  }
+}

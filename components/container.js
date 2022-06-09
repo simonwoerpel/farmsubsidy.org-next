@@ -4,25 +4,20 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Breadcrumb from "./breadcrumb.js";
+import styles from "./container.module.scss";
 
 export default function MainContainer({ children }) {
   return (
-    <Container fluid as="main" className="fs-main">
-      <Row>
-        <Col className="fs-breadcrumb">
-          <Breadcrumb />
-        </Col>
-      <Row>
-      </Row>
-        {children}
-      </Row>
+    <Container fluid as="main" className={styles.main}>
+      <Row>{children}</Row>
     </Container>
   );
 }
 
 export function Content({ children }) {
   return (
-    <Col xl={9} lg={8} md={8} sm={7} className="fs-content">
+    <Col xl={9} lg={8} md={8} sm={7} className={styles.content}>
+      <Breadcrumb />
       {children}
     </Col>
   );
@@ -30,7 +25,7 @@ export function Content({ children }) {
 
 function Widget({ title, children }) {
   return (
-    <Card className="fs-sidebar__widget">
+    <Card className={styles.widget}>
       <Card.Body>
         {title ? <Card.Title>{title}</Card.Title> : null}
         {children}
@@ -41,7 +36,7 @@ function Widget({ title, children }) {
 
 function StyledWidget({ header, title, children, footer }) {
   return (
-    <Card className="fs-sidebar__widget">
+    <Card className={styles.widget}>
       <Card.Header>{header}</Card.Header>
       <Card.Body>
         {title && <Card.Title>{title}</Card.Title>}
@@ -54,14 +49,14 @@ function StyledWidget({ header, title, children, footer }) {
 
 function Sidebar({ children }) {
   return (
-    <Col className="fs-sidebar">
+    <Col className={styles.sidebar}>
       {children}
       <Widget>
         <div className="text-center">
           <a href="https://okfn.de">
             <Image
-              width="100%"
-              height="100%"
+              width="808"
+              height="366"
               src="/images/okfde.svg"
               alt="Open Knowledge Foundation Germany"
             />

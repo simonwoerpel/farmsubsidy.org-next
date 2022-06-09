@@ -59,7 +59,7 @@ export default function SearchForm({
   return (
     <>
       <InputGroup className="mb-3">
-        <DropdownButton variant="primary" title={endpoint}>
+        <DropdownButton variant="secondary" title={endpoint}>
           {SEARCH_ENDPOINTS.filter((e) => endpoint !== e).map((e) => (
             <Dropdown.Item
               key={e}
@@ -128,6 +128,7 @@ export default function SearchForm({
           value={value}
         />
         <Button
+          variant="secondary"
           disabled={isLoading}
           onClick={() => handleParamsChange({ q: value })}
         >

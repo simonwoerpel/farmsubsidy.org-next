@@ -17,12 +17,9 @@ export default function Country({
   return (
     <CustomPage {...ctx}>
       <Content>
-        <header className="page-heading">
-          <h2>
-            EU Farm subsidies for {country.name}
-            <br />
-            <small> for all available years</small>
-          </h2>
+        <header>
+          <h1>{country.name}</h1>
+          <h3>EU Farm subsidies for all available years</h3>
         </header>
 
         <p>
@@ -32,20 +29,18 @@ export default function Country({
           requests.
         </p>
 
-        <div className="section">
-          <h3>Top recipients</h3>
-          <RecipientsTable
-            recipients={topRecipients}
-            columnsExclude={["country"]}
-          />
-          <p className="more_info">
-            <CountryLink.Recipients {...country} />
-          </p>
-        </div>
-        <div className="section">
-          <h3>Available years for {country.name}</h3>
-          <CountryYearsTable country={country.country} years={countryYears} />
-        </div>
+        <RecipientsTable
+          title="Top recipients"
+          recipients={topRecipients}
+          columnsExclude={["country"]}
+          actions={<CountryLink.Recipients {...country} />}
+        />
+
+        <CountryYearsTable
+          title={`Available years for ${country.name}`}
+          country={country.country}
+          years={countryYears}
+        />
       </Content>
       <Sidebar>
         <AmountWidget

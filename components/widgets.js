@@ -3,10 +3,11 @@ import Card from "react-bootstrap/Card";
 import { Numeric } from "./util.js";
 import Flag from "./countryFlag.js";
 import DownloadCSV from "./downloadCsv.js";
+import styles from "./container.module.scss";
 
 export function AmountWidget({ title, value, country, year, children }) {
   return (
-    <Card className="fs-sidebar__widget">
+    <Card className={styles.widget}>
       <Card.Header>
         {country && <Flag iso={country} />}
         {title}
@@ -28,7 +29,7 @@ export function AmountWidget({ title, value, country, year, children }) {
 
 export function DownloadWidget({ title = "Data", ...props }) {
   return (
-    <Card className="fs-sidebar__widget">
+    <Card className={styles.widget}>
       <Card.Header>{title}</Card.Header>
       <Card.Body>
         <DownloadCSV {...props} />

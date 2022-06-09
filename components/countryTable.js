@@ -37,12 +37,13 @@ export default function CountriesTable({
   years,
   activeYear,
   columns = Object.keys(COLUMNS),
+  ...props
 }) {
   const conditionalRowStyles = [
     {
       when: (r) => r.year.toString() === activeYear?.toString(),
       style: {
-        backgroundColor: "var(--bs-gray-200)",
+        backgroundColor: "var(--bs-body-bg)",
       },
     },
   ];
@@ -53,6 +54,7 @@ export default function CountriesTable({
       data={years}
       conditionalRowStyles={conditionalRowStyles}
       defaultSortFieldId="year"
+      {...props}
     />
   );
 }

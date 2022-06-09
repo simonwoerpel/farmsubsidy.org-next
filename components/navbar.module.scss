@@ -1,0 +1,48 @@
+@import "~/styles/variables";
+@import "~/node_modules/bootstrap/scss/mixins";
+
+@mixin navLink {
+  color: #fff !important;
+  font-size: $font-size-base;
+  padding: 15px 20px !important;
+
+  &.active,
+  &:hover,
+  &:focus {
+    color: #fff;
+    // background-color: lighten($primary, 5%);
+    background-color: $secondary;
+  }
+}
+
+.root {
+  background-color: $primary;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.link {
+  @include navLink;
+}
+
+.dropdown {
+  & > a {
+    @include navLink;
+  }
+}
+
+.container {
+  max-width: 1800px;
+}
+
+.brand {
+  background: url("/images/cow.svg") left center no-repeat;
+  color: #fff;
+  font-size: 1.2rem;
+
+  @include media-breakpoint-up(md) {
+    background: none;
+  }
+}

@@ -1,11 +1,15 @@
 import Link from "next/link";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import styles from "./footer.module.scss";
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4">
+    <footer className={styles.root}>
+      <Container className={styles.footer}>
+        <Row>
+          <Col>
             <h5>Looking for more information?</h5>
             <ul className="list-unstyled">
               <li>
@@ -19,8 +23,8 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
-          <div className="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4">
+          </Col>
+          <Col>
             <h5>Get in touch</h5>
             <ul className="list-unstyled">
               <li>
@@ -30,8 +34,8 @@ export default function Footer() {
                 <a href="https://twitter.com/farmsubsidy">Twitter</a>
               </li>
             </ul>
-          </div>
-          <div className="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4">
+          </Col>
+          <Col>
             <h5>Technical</h5>
             <ul className="list-unstyled">
               <li>
@@ -43,12 +47,11 @@ export default function Footer() {
                 <a href="http://data.farmsubsidy.org/">Get the raw data</a>
               </li>
             </ul>
-          </div>
-        </div>
-        <hr />
-        <div className="row text-small text-muted">
-          <div className="col-lg-12">
-            <p>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={12}>
+            <p className="text-small">
               FarmSubsidy.org uses the privacy friendly{" "}
               <a href="https://matomo.org">Matomo</a> software for statistical
               analysis of this website&apos;s traffic. We respect your
@@ -58,9 +61,9 @@ export default function Footer() {
               </a>
               .
             </p>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     </footer>
   );
 }

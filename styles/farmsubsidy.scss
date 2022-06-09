@@ -1,54 +1,8 @@
-@import "~/node_modules/bootstrap/scss/functions";
-
-// $bs-border-radius: 0;
-// $bg-opacity: .85;
-$primary: #139744;
-$green: #139744;
-$gray: #c6c6c4;
-
-$body-bg: #f6f6f6;
+@import "./variables";
 
 body {
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
-}
-
-.fs-header {
-  position: relative;
-  background: url("/images/header.jpg");
-  background-size: cover;
-  padding-top: 240px;
-
-  &--hero {
-    padding-top: 30vh;
-    height: 80vh;
-
-    .hero-claim {
-      color: white;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-      /* font-weight: normal; */
-    }
-  }
-}
-
-.fs-main,
-.fs-header__row {
-  max-width: 1800px;
-}
-.fs-content {
-  padding: 15px;
-  background-color: #fff;
-}
-
-.fs-sidebar {
-  padding-top: 15px;
-  background-color: #eee;
-
-  &__widget {
-    margin-bottom: 15px;
-  }
+  background-color: #333 !important;
 }
 
 .fs-search-form {
@@ -80,92 +34,9 @@ body {
 //   padding: 10px;
 // }
 
-// .the-cow {
-//   display: none;
-// }
-
-// .navbar-fs .navbar-brand {
-//   background: url("/images/cow.svg") left center no-repeat;
-//   padding-left: 65px;
-// }
-
-// @media (min-width: 768px) {
-//   .navbar-fs .navbar-brand {
-//     padding-left: 15px;
-//     background: none;
-//   }
-//   .the-cow {
-//     display: block;
-//     width: 220px;
-//     height: 220px;
-//     position: relative;
-//     bottom: -95px;
-//     background-color: var(--main-color-trans);
-//     border-radius: 150px;
-//     clip-path: inset(0 0 61px 0);
-//   }
-
-//   .the-cow img {
-//     position: absolute;
-//     top: 5px;
-//     left: 15px;
-//     z-index: 100;
-//   }
-// }
-
-// .navbar-fs {
-//   background-color: var(--main-color-trans);
-//   border: 0;
-//   margin: 0 -15px;
-//   border-radius: 0;
-//   border-top-left-radius: 4px;
-//   border-top-right-radius: 4px;
-//   padding: 0 10px;
-// }
-
-// .navbar-fs .navbar-toggler {
-//   color: #fff;
-//   border-color: #fff;
-// }
-
-// .navbar-fs .navbar-nav > li > a {
-//   color: #fff;
-// }
-
-// .navbar-fs .navbar-nav .nav-link {
-//   color: #fff;
-// }
-
-// .navbar-fs .navbar-nav .nav-link:hover,
-// .navbar-fs .navbar-nav .nav-link:focus,
-// .navbar-fs .navbar-nav .nav-item.active .nav-link {
-//   color: #fff;
-//   background-color: #333;
-// }
-
-// .navbar-fs .navbar-brand {
-//   color: #fff;
-//   font-size: 1.2rem;
-// }
-
-// .navbar-toggle .icon-bar {
-//   background-color: #fff;
-// }
-
 // .page-heading {
 //   margin: 2rem 0;
 // }
-
-.footer {
-  padding: 30px 0;
-  background-color: #161614;
-  border-top: 8px $primary solid;
-  color: $gray;
-
-  a {
-    color: $gray;
-  }
-}
 
 // .money {
 //   text-align: right;
@@ -180,3 +51,4 @@ body {
 //   color: var(--main-color);
 // }
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "./datatable.scss";

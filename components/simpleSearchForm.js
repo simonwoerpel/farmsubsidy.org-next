@@ -6,6 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Button from "react-bootstrap/Button";
 // import Autocomplete from "./autocomplete.js";
+import styles from "./simpleSearchForm.module.scss";
 
 const SEARCH_HINTS = ["Nestlé", "Windsor"];
 const ENDPOINTS = [
@@ -32,9 +33,13 @@ export default function SimpleSearchForm({ size, withoutHints }) {
   // }, [value]);
 
   return (
-    <Form className="fs-search-form">
+    <Form>
       <InputGroup size={size}>
-        <DropdownButton variant="primary" title={activeEndpoint.label}>
+        <DropdownButton
+          variant="secondary"
+          title={activeEndpoint.label}
+          className={styles.button}
+        >
           {ENDPOINTS.filter((e) => activeEndpoint !== e).map((e) => (
             <Dropdown.Item key={e.label} onClick={() => setActiveEndpoint(e)}>
               {e.label}
@@ -43,20 +48,20 @@ export default function SimpleSearchForm({ size, withoutHints }) {
         </DropdownButton>
         <Form.Control
           aria-label="Search"
-          autoFocus
           placeholder={placeholder}
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
         <Button
-          variant="primary"
+          variant="secondary"
+          className={styles.button}
           href={`/search?search=${activeEndpoint.label}&q=${value}`}
         >
           Search
         </Button>
       </InputGroup>
       {!withoutHints && (
-        <Form.Text className="search-examples" muted>
+        <Form.Text muted>
           e.g.{" "}
           {SEARCH_HINTS.map((q, i) => (
             <span key={q}>

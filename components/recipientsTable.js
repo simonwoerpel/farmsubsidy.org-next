@@ -57,6 +57,7 @@ export default function RecipientsTable({
   recipients,
   columns = Object.keys(COLUMNS),
   columnsExclude = null,
+  ...props
 }) {
   if (!!columnsExclude) {
     columns = columns.filter((c) => columnsExclude.indexOf(c) < 0);
@@ -68,6 +69,7 @@ export default function RecipientsTable({
       data={recipients}
       defaultSortFieldId="amount_sum"
       defaultSortAsc={false}
+      {...props}
     />
   );
 }

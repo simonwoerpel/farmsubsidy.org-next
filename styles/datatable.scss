@@ -1,0 +1,17 @@
+.rdt_TableHeader {
+  margin-top: $grid-gutter-width;
+  background-color: $body-bg !important;
+}
+
+.rdt_TableHeadRow {
+  font-size: $font-size-base;
+  font-weight: 700;
+}
+
+.rdt_TableCell {
+  font-size: $font-size-sm;
+
+  .numeric {
+    // FIXME align right
+  }
+}
