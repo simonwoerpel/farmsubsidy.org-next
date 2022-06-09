@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import DataTable from "react-data-table-component";
 import { Numeric, Amount, Recipients } from "./util.js";
 import { CountryLink, CountryYearLink } from "~/lib/links.js";
+import { DownloadCSVSync } from "./downloadCsv.js";
 
 const COLUMNS = {
   country: {
@@ -41,8 +43,18 @@ const COLUMNS = {
 };
 
 export default function CountriesTable({ countries }) {
-  const columns = Object.keys(COLUMNS).map((c) => COLUMNS[c]);
+  const actions = useMemo(
+    () => (
+      <DownloadCSVSync rows={countries} fileName="farmsubsidy_countries.csv" />
+    ),
+    []
+  );
   return (
-    <DataTable columns={columns} data={countries} defaultSortFieldId="name" />
+    <DataTable
+      columns={Object.values(COLUMNS)}
+      data={countries}
+      defaultSortFieldId="name"
+      actions={actions}
+    />
   );
 }
