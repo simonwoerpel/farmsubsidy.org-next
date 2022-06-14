@@ -31,7 +31,7 @@ export default function Recipient({ recipient, payments = [], ...ctx }) {
         </LoadingPlaceholder>
 
         <LoadingPlaceholder as="p" isLoading={router.isLoading}>
-          <RecipientPaymentsTable payments={payments} />
+          <RecipientPaymentsTable payments={payments} recipient={recipient} />
         </LoadingPlaceholder>
       </Content>
       <Sidebar>

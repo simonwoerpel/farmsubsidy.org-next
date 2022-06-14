@@ -1,14 +1,16 @@
 import { useMemo } from "react";
 import DataTable from "react-data-table-component";
-import { Numeric } from "./util.js";
 import {
   YearLink,
   SchemeLink,
   RecipientLink,
   CountryLink,
 } from "~/lib/links.js";
+import { getPayments } from "~/lib/api.js";
 import { DownloadCSVSync } from "./downloadCsv.js";
 import ApiTable from "./apiTable.js";
+import ApiLink from "./apiLink.js";
+import { Numeric } from "./util.js";
 
 const COLUMNS = {
   recipient: {
@@ -47,15 +49,21 @@ const COLUMNS = {
   },
 };
 
-export default function RecipientPaymentsTable({ payments }) {
+export default function RecipientPaymentsTable({ payments, recipient }) {
+  const apiUrl = getPayments.getUrl({ recipient_id: recipient?.id });
   const columns = useMemo(
     () => [COLUMNS.year, COLUMNS.scheme, COLUMNS.amount],
     []
   );
   const actions = useMemo(
-    () => (
-      <DownloadCSVSync rows={payments} fileName="farmsubsidy_payments.csv" />
-    ),
+    () => [
+      <DownloadCSVSync
+        rows={payments}
+        fileName="farmsubsidy_payments.csv"
+        key="download"
+      />,
+      <ApiLink url={apiUrl} key="apiUrl" />,
+    ],
     []
   );
   const paginationProps =

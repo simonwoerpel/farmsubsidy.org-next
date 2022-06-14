@@ -6,9 +6,10 @@ import Placeholder from "react-bootstrap/Placeholder";
 import { Amount, Numeric } from "./util.js";
 import Flag from "./countryFlag.js";
 import DownloadCSV from "./downloadCsv.js";
-import styles from "./container.module.scss";
+import ApiLink from "./apiLink.js";
 import { SEARCH_PARAMS } from "~/lib/api.js";
-import { shorten } from "~/lib/util.js"
+import { shorten } from "~/lib/util.js";
+import styles from "./container.module.scss";
 
 export function AmountWidget({ title, value, country, year, children }) {
   return (
@@ -37,7 +38,10 @@ export function DownloadWidget({ title = "Data", ...props }) {
     <Card className={styles.widget}>
       <Card.Header>{title}</Card.Header>
       <Card.Body>
-        <DownloadCSV {...props} />
+        <Stack gap={3}>
+          <DownloadCSV {...props} />
+          <ApiLink {...props} />
+        </Stack>
       </Card.Body>
       <Card.Footer className="text-muted">
         <Link href="/data">

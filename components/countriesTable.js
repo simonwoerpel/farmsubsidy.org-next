@@ -3,6 +3,8 @@ import DataTable from "react-data-table-component";
 import { Numeric, Amount, Recipients } from "./util.js";
 import { CountryLink, CountryYearLink } from "~/lib/links.js";
 import { DownloadCSVSync } from "./downloadCsv.js";
+import ApiLink from "./apiLink.js";
+import { getCountries } from "~/lib/api.js";
 
 const COLUMNS = {
   country: {
@@ -43,10 +45,16 @@ const COLUMNS = {
 };
 
 export default function CountriesTable({ countries }) {
+  const apiUrl = getCountries.getUrl();
   const actions = useMemo(
-    () => (
-      <DownloadCSVSync rows={countries} fileName="farmsubsidy_countries.csv" />
-    ),
+    () => [
+      <DownloadCSVSync
+        rows={countries}
+        fileName="farmsubsidy_countries.csv"
+        key="download"
+      />,
+      <ApiLink url={apiUrl} key="apiUrl" />,
+    ],
     []
   );
   return (
