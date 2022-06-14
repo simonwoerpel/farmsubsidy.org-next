@@ -8,7 +8,7 @@ import LoadingPlaceholder from "~/components/placeholder.js";
 import RecipientPaymentsTable from "~/components/paymentsTable.js";
 import { Numeric } from "~/components/util.js";
 import { CountryLink, LocationLink, RecipientLink } from "~/lib/links.js";
-import api from "~/lib/api.js";
+import { getRecipients, getRecipient, getPayments } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 
 export default function Recipient({ recipient, payments = [], ...ctx }) {
@@ -88,12 +88,14 @@ export async function getStaticPaths() {
   const { countries } = await getCachedContext();
   const recipients = await Promise.all(
     countries.map(({ country }) =>
-      api("recipients", {
-        country,
-        order_by: "-amount_sum",
-        recipient_name__null: false,
-        limit: process.env.PRERENDER_RECIPIENTS_COUNT || 5,
-      })
+      getRecipients(
+        {
+          country,
+          order_by: "-amount_sum",
+          limit: process.env.PRERENDER_RECIPIENTS_COUNT || 5,
+        },
+        false
+      )
     )
   );
   const paths = recipients
@@ -108,10 +110,8 @@ export async function getStaticProps({
   },
 }) {
   const ctx = await getCachedContext();
-  const recipients = await api("recipients", { recipient_id });
-  const payments = await api("payments", { recipient_id });
-  // const recipient = recipienst[0]
-  // const nearByRecipients = await api("recipients", {recipient_address__ilike: `${recipient.address}`})
+  const recipient = await getRecipient(recipient_id);
+  const { results: payments } = await getPayments({ recipient_id });
 
-  return { props: { recipient: recipients[0], payments, ...ctx } };
+  return { props: { recipient, payments, ...ctx } };
 }

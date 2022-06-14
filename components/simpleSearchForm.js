@@ -1,48 +1,38 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Button from "react-bootstrap/Button";
-// import Autocomplete from "./autocomplete.js";
+import { SEARCH_ENDPOINTS } from "~/lib/api.js";
 import styles from "./simpleSearchForm.module.scss";
 
 const SEARCH_HINTS = ["Nestlé", "Windsor"];
-const ENDPOINTS = [
-  { endpoint: "recipients/search", label: "Recipients" },
-  { endpoint: "schemes/search", label: "Schemes" },
-];
 
 export default function SimpleSearchForm({ size, withoutHints }) {
+  const router = useRouter();
   const [value, setValue] = useState("");
-  const [activeEndpoint, setActiveEndpoint] = useState(ENDPOINTS[0]);
-  // const [recipientSuggestions, setRecipientSuggestions] = useState([]);
-  const placeholder = `Search for ${activeEndpoint.label}...`;
+  const [activeEndpoint, setActiveEndpoint] = useState(SEARCH_ENDPOINTS[0]);
+  const placeholder = `Search for ${activeEndpoint}...`;
 
-  // execute autocomplete
-  // useEffect(() => {
-  //   if (value.length > 1) {
-  //     const params = { ...activeParams, q: value };
-  //     delete params["order_by"];
-  //     delete params["p"];
-  //     api("recipients/autocomplete", params).then((res) =>
-  //       setRecipientSuggestions(res)
-  //     );
-  //   }
-  // }, [value]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    router.push(`/search/${activeEndpoint.toLowerCase()}?q=${value}`);
+  };
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <InputGroup size={size}>
         <DropdownButton
           variant="secondary"
-          title={activeEndpoint.label}
+          title={activeEndpoint}
           className={styles.button}
         >
-          {ENDPOINTS.filter((e) => activeEndpoint !== e).map((e) => (
-            <Dropdown.Item key={e.label} onClick={() => setActiveEndpoint(e)}>
-              {e.label}
+          {SEARCH_ENDPOINTS.filter((e) => activeEndpoint !== e).map((e) => (
+            <Dropdown.Item key={e} onClick={() => setActiveEndpoint(e)}>
+              {e}
             </Dropdown.Item>
           ))}
         </DropdownButton>
@@ -52,11 +42,7 @@ export default function SimpleSearchForm({ size, withoutHints }) {
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
-        <Button
-          variant="secondary"
-          className={styles.button}
-          href={`/search?search=${activeEndpoint.label}&q=${value}`}
-        >
+        <Button variant="secondary" className={styles.button} type="submit">
           Search
         </Button>
       </InputGroup>

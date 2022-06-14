@@ -71,6 +71,9 @@ export default function MainNavbar({ countries, years, hideSearchForm }) {
             <Link href="/schemes" passHref>
               <Nav.Link className={styles.link}>Schemes</Nav.Link>
             </Link>
+            <Link href="/search/locations" passHref>
+              <Nav.Link className={styles.link}>Locations</Nav.Link>
+            </Link>
           </Nav>
           {!hideSearchForm && <SimpleSearchForm withoutHints />}
         </Navbar.Collapse>

@@ -4,7 +4,7 @@ import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";
 import RecipientsTable from "~/components/recipientsTable.js";
 import CountryYearsTable from "~/components/countryTable.js";
-import api from "~/lib/api.js";
+import { getCountry, getRecipientsChained, getYears } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 import { CountryLink } from "~/lib/links.js";
 
@@ -14,6 +14,11 @@ export default function Country({
   topRecipients,
   ...ctx
 }) {
+  const actions = [
+    <CountryLink.Recipients {...country} key="recipients" />,
+    <CountryLink.Payments {...country} key="payments" />,
+  ];
+
   return (
     <CustomPage {...ctx}>
       <Content>
@@ -33,7 +38,7 @@ export default function Country({
           title="Top recipients"
           recipients={topRecipients}
           columnsExclude={["country"]}
-          actions={<CountryLink.Recipients {...country} />}
+          actions={actions}
         />
 
         <CountryYearsTable
@@ -57,29 +62,24 @@ export default function Country({
 }
 
 export async function getStaticPaths() {
-  const results = await api("countries");
-  const paths = results.map(({ country }) => ({
+  const { countries } = await getCachedContext();
+  const paths = countries.map(({ country }) => ({
     params: CountryLink.getParams({ country }),
   }));
   return { paths, fallback: false };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params: { country } }) {
   const ctx = await getCachedContext();
-  const countries = await api("countries", { country: params.country });
-  const countryYears = await api("years", { country: params.country });
-  const topRecipientIds = await api("recipients/base", {
-    recipient_name__null: false,
-    country: params.country,
+  const countryData = await getCountry(country);
+  const countryYears = await getYears({ country });
+  const topRecipients = await getRecipientsChained({
+    country,
     order_by: "-amount_sum",
     limit: 5,
   });
-  const topRecipientsRes = await Promise.all(
-    topRecipientIds.map(({ id }) => api("recipients", { recipient_id: id }))
-  );
-  const topRecipients = topRecipientsRes.flat();
 
   return {
-    props: { ...ctx, country: countries[0], countryYears, topRecipients },
+    props: { ...ctx, country: countryData, countryYears, topRecipients },
   };
 }

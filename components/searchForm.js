@@ -9,9 +9,18 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import Flag from "./countryFlag.js";
 import Autocomplete from "./autocomplete.js";
-import api, { SEARCH_ENDPOINTS } from "~/lib/api.js";
+import { COUNTRYNAMES } from "~/lib/context.js";
+import { SEARCH_ENDPOINTS } from "~/lib/api.js";
+
+const CloseButton = ({ handleClear, ...props }) => (
+  <Button onClick={handleClear} {...props}>
+    <FontAwesomeIcon icon={faCircleXmark} fixedWidth style={{ width: 20 }} />
+  </Button>
+);
 
 export default function SearchForm({
   endpoint,
@@ -19,20 +28,19 @@ export default function SearchForm({
   years,
   handleParamsChange,
   isLoading,
-  query: { country, year },
+  query: { country, year, q = "" },
 }) {
   const router = useRouter();
-  const [value, setValue] = useState(router.query.p || "");
+  const [value, setValue] = useState(q);
   const [blocked, setBlocked] = useState(false);
   const [recipientSuggestions, setRecipientSuggestions] = useState([]);
-  const countryLabel =
-    countries.find((c) => c.country === country)?.name || "Country";
+  const countryLabel = COUNTRYNAMES[country] || "Country";
   const yearLabel = year || "Year";
   const placeholder = `Search for ${endpoint}...`;
 
   // execute autocomplete on value change
-  const aValue = useDebounce(value);
-  const aChanged = blocked !== aValue;
+  // const aValue = useDebounce(value);
+  // const aChanged = blocked !== aValue;
   // useEffect(() => {
   //   if (endpoint === "Recipients" && aChanged && !isLoading) {
   //     setRecipientSuggestions([]);
@@ -56,15 +64,28 @@ export default function SearchForm({
     handleParamsChange({ q: value });
   };
 
+  const handleEndpointChange = (endpoint) =>
+    router.push({
+      pathname: `/search/${endpoint.toLowerCase()}`,
+      query: router.query,
+    });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleParamsChange({ q: value });
+  };
+
+  const handleClear = () => {
+    setValue("");
+    handleParamsChange({ q: null });
+  };
+
   return (
-    <>
+    <Form onSubmit={handleSubmit}>
       <InputGroup className="mb-3">
         <DropdownButton variant="secondary" title={endpoint}>
           {SEARCH_ENDPOINTS.filter((e) => endpoint !== e).map((e) => (
-            <Dropdown.Item
-              key={e}
-              onClick={() => handleParamsChange({ search: e })}
-            >
+            <Dropdown.Item key={e} onClick={() => handleEndpointChange(e)}>
               {e}
             </Dropdown.Item>
           ))}
@@ -127,11 +148,14 @@ export default function SearchForm({
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />
-        <Button
-          variant="secondary"
-          disabled={isLoading}
-          onClick={() => handleParamsChange({ q: value })}
-        >
+        {!!value && (
+          <CloseButton
+            disabled={isLoading}
+            variant="outline-secondary"
+            handleClear={handleClear}
+          />
+        )}
+        <Button variant="secondary" disabled={isLoading} type="submit">
           Search
           {isLoading && (
             <Spinner
@@ -148,6 +172,6 @@ export default function SearchForm({
         recipients={recipientSuggestions}
         onSelect={handleValueSelect}
       />
-    </>
+    </Form>
   );
 }

@@ -12,7 +12,7 @@ import ApiTable from "./apiTable.js";
 const COLUMNS = {
   name: {
     name: "Name",
-    selector: (r) => r.name,
+    selector: (r) => r.name[0],
     cell: (r) => <RecipientLink {...r} />,
   },
   address: {
@@ -75,6 +75,6 @@ export default function RecipientsTable({
 }
 
 export function RecipientsSearchTable(props) {
-  const columns = Object.keys(COLUMNS).map((k) => COLUMNS[k]);
+  const columns = Object.values(COLUMNS);
   return <ApiTable columns={columns} {...props} />;
 }

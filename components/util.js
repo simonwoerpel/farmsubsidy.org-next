@@ -64,7 +64,7 @@ export { Numeric };
 const Amount = ({ value }) => (
   <Stack>
     <Numeric value={value} append="€" />
-    <Numeric.IntWord value={value} append="Euro" />
+    {value > 1000000 && <Numeric.IntWord value={value} append="Euro" />}
   </Stack>
 );
 

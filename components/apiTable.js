@@ -20,7 +20,7 @@ const Loading = ({ loading, children }) => (
 
 export default function ApiTable({
   columns,
-  apiState: { rows, totalRows, error, loading, tableProps, needServer },
+  apiState: { rows, totalRows, error, loading, tableProps },
   updateApiState,
   ...props
 }) {
@@ -31,20 +31,18 @@ export default function ApiTable({
   const handlePageChange = (p) => updateApiState({ p });
   const handlePerRowsChange = (limit, p) => updateApiState({ p, limit });
 
-  props = needServer
-    ? {
-        sortServer: true,
-        onSort: handleSort,
-        onChangeRowsPerPage: handlePerRowsChange,
-        onChangePage: handlePageChange,
-        pagination: true,
-        paginationServer: true,
-        disabled: loading,
-        paginationTotalRows: totalRows,
-        ...tableProps,
-        ...props,
-      }
-    : { pagination: false, ...props };
+  props = {
+    sortServer: true,
+    onSort: handleSort,
+    onChangeRowsPerPage: handlePerRowsChange,
+    onChangePage: handlePageChange,
+    pagination: true,
+    paginationServer: true,
+    disabled: loading,
+    paginationTotalRows: totalRows,
+    ...tableProps,
+    ...props,
+  };
 
   // avoid redundant re-rendering
   // https://react-data-table-component.netlify.app/?path=/docs/performance-optimization--page#optimizing-functionalhook-components

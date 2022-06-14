@@ -2,7 +2,7 @@ import Link from "next/link";
 import { IndexPage } from "~/components/pages.js";
 import { Content, Sidebar } from "~/components/container.js";
 import { RecipientList, CountryList } from "~/components/lists.js";
-import api from "~/lib/api.js";
+import { getRecipientsChained } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 
 export default function Index({ countries, years, topRecipients }) {
@@ -84,14 +84,9 @@ export default function Index({ countries, years, topRecipients }) {
 
 export async function getStaticProps() {
   const ctx = await getCachedContext();
-  const topRecipientIds = await api("recipients/base", {
-    recipient_name__null: false,
+  const topRecipients = await getRecipientsChained({
     order_by: "-amount_sum",
     limit: 5,
   });
-  const topRecipientsRes = await Promise.all(
-    topRecipientIds.map(({ id }) => api("recipients", { recipient_id: id }))
-  );
-  const topRecipients = topRecipientsRes.flat();
   return { props: { ...ctx, topRecipients } };
 }

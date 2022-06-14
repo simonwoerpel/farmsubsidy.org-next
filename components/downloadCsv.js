@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Papa from "papaparse";
-import slugify from "slugify";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import api, { SEARCH_PARAMS } from "~/lib/api.js";
-
-const EXPORT_PARAMS = { output: "csv", limit: 1000, p: 1 };
+import { getExport } from "~/lib/api.js";
+import { EXPORT_LIMIT } from "~/lib/settings.js";
+import { useDebounce } from "~/lib/util.js";
+import { Numeric } from "./util.js";
 
 const toB64 = (value) => {
   value = unescape(encodeURIComponent(value));
@@ -22,63 +22,80 @@ const getDataUrl = (value) =>
 function DownloadButton({
   loading = false,
   fileName = "farmsubsidy.csv",
-  dataUrl,
+  url,
   count,
 }) {
+  const disabled = loading || !url || count > EXPORT_LIMIT;
+
   return (
-    <Button
-      disabled={loading}
-      variant="secondary"
-      href={dataUrl}
-      download={fileName}
-    >
-      <FontAwesomeIcon icon={faDownload} style={{ width: 15 }} fixedWidth />{" "}
-      Download {count} rows (csv)
-    </Button>
+    <>
+      <Button
+        disabled={disabled}
+        variant="secondary"
+        href={url}
+        download={fileName}
+      >
+        {loading ? (
+          <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+        ) : (
+          <FontAwesomeIcon icon={faDownload} style={{ width: 15 }} fixedWidth />
+        )}{" "}
+        Download <Numeric value={count} /> rows (csv)
+      </Button>
+      {count > EXPORT_LIMIT && (
+        <div className="text-muted">
+          Export is limited to 100.000 rows. Please refine your search.
+        </div>
+      )}
+    </>
   );
 }
 
 export default function DownloadCSV({
   endpoint,
+  loading: apiLoading,
   apiQuery,
   totalRows,
   rows,
-  loading: apiLoading,
 }) {
-  const router = useRouter();
   const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
-  const query = { ...apiQuery, ...EXPORT_PARAMS };
-  if (totalRows > 0 && totalRows < 1001) {
-    query.limit = totalRows;
-  }
+  // wait for base api and don't change too often
+  const delayedShouldLoad = useDebounce(shouldLoad);
 
   useEffect(() => {
-    if (!apiLoading && !loading) {
+    if (shouldLoad && delayedShouldLoad) {
+      setShouldLoad(false);
+      setResult();
       setLoading(true);
-      api(endpoint, query).then((res) => setResult(res));
-      setLoading(false);
+      getExport(endpoint, apiQuery).then((res) => {
+        setResult(res);
+        setLoading(false);
+      });
     }
-  }, [apiQuery]);
+  }, [delayedShouldLoad]);
 
-  const count = totalRows < 1001 ? totalRows : rows.length;
-  const dataUrl = getDataUrl(result);
-  const nameParams = { ...apiQuery, ...router.query };
-  const fileName =
-    "farmsubsidy_" +
-    Object.entries(nameParams)
-      .filter(([k, v]) => SEARCH_PARAMS.indexOf(k) > -1)
-      .map(([k, v]) => slugify(v.toString()).substr(0, 25))
-      .join("_") +
-    `_page${apiQuery.p || 1}.csv`;
+  useEffect(
+    () =>
+      setShouldLoad(
+        totalRows > 0 && totalRows <= EXPORT_LIMIT && !loading && !apiLoading
+      ),
+    [apiQuery, apiLoading, totalRows]
+  );
 
   return (
     <DownloadButton
-      loading={loading}
-      fileName={fileName}
-      dataUrl={dataUrl}
-      count={count}
+      loading={loading || apiLoading}
+      url={result?.export_url}
+      count={totalRows}
     />
   );
 }
@@ -87,6 +104,6 @@ export function DownloadCSVSync({ rows, fileName }) {
   // without extra api call
   const count = rows.length;
   const csvData = Papa.unparse(rows);
-  const dataUrl = getDataUrl(csvData);
-  return <DownloadButton dataUrl={dataUrl} fileName={fileName} count={count} />;
+  const url = getDataUrl(csvData);
+  return <DownloadButton url={url} fileName={fileName} count={count} />;
 }

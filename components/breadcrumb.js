@@ -8,6 +8,10 @@ import styles from "./breadcrumb.module.scss";
 const ROUTES = {
   "/[slug]": ({ slug }) => ({ label: slug }), // md pages
   "/search": () => ({ label: "Search" }),
+  "/search/locations": () => ({ label: "Locations" }),
+  "/search/recipients": () => ({ label: "Recipients" }),
+  "/search/schemes": () => ({ label: "Schemes" }),
+  "/search/payments": () => ({ label: "Payments" }),
   "/countries": () => ({ url: "/countries", label: "Countries" }),
   "/countries/[country]": ({ country }) => ({
     label: COUNTRYNAMES[country],
@@ -18,6 +22,7 @@ const ROUTES = {
   "/schemes/[...param]": ({ param }) => ({
     label: param?.length > 1 ? param[1].replace(/-/g, " ") : "Scheme",
   }),
+  "/recipients": () => ({ url: "/search/recipients", label: "Recipients" }),
   "/recipients/[...param]": ({ param }) => ({
     label: param?.length > 1 ? param[1].replace(/-/g, " ") : "Recipient",
   }),
@@ -46,11 +51,15 @@ export default function FSBreadcrumb() {
       <Link href="/" passHref>
         <Breadcrumb.Item>Start</Breadcrumb.Item>
       </Link>
-      {crumbs.map(({ label, url }) => (
-        <Link href={url} passHref key={url}>
-          <Breadcrumb.Item>{label}</Breadcrumb.Item>
-        </Link>
-      ))}
+      {crumbs.map(({ label, url }) =>
+        !!url ? (
+          <Link href={url} passHref key={url}>
+            <Breadcrumb.Item>{label}</Breadcrumb.Item>
+          </Link>
+        ) : (
+          <Breadcrumb.Item key={label}>{label}</Breadcrumb.Item>
+        )
+      )}
       <Breadcrumb.Item active>{leaf.label}</Breadcrumb.Item>
     </Breadcrumb>
   );

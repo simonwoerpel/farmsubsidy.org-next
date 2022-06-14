@@ -5,11 +5,16 @@ import { CustomPage } from "~/components/pages.js";
 import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";
 import RecipientsTable from "~/components/recipientsTable.js";
-import api from "~/lib/api.js";
+import { getSchemes, getScheme, getRecipientsChained } from "~/lib/api.js";
 import { SchemeLink } from "~/lib/links.js";
 import getCachedContext from "~/lib/context.js";
 
-export default function Country({ scheme, topRecipients, ...ctx }) {
+export default function Scheme({ scheme, topRecipients, ...ctx }) {
+  const actions = [
+    <SchemeLink.Recipients {...scheme} key="recipients" />,
+    <SchemeLink.Payments {...scheme} key="payments" />,
+  ];
+
   return (
     <CustomPage {...ctx}>
       <Content>
@@ -22,7 +27,7 @@ export default function Country({ scheme, topRecipients, ...ctx }) {
           <RecipientsTable
             title="Top recipients"
             recipients={topRecipients}
-            actions={<SchemeLink.Recipients {...scheme} />}
+            actions={actions}
           />
         </div>
       </Content>
@@ -37,17 +42,8 @@ export default function Country({ scheme, topRecipients, ...ctx }) {
 }
 
 export async function getStaticPaths() {
-  const results = await api(
-    "schemes",
-    {
-      scheme_id__null: false,
-      amount__gte: 0,
-      order_by: "-amount_sum",
-    },
-    false,
-    true
-  );
-  const paths = results.map((s) => ({
+  const { results: schemes } = await getSchemes({ limit: 4000 });
+  const paths = schemes.map((s) => ({
     params: { param: SchemeLink.getParams(s) },
   }));
   return { paths, fallback: false };
@@ -59,18 +55,12 @@ export async function getStaticProps({
   },
 }) {
   const ctx = await getCachedContext();
-  const schemes = await api("schemes", { scheme_id });
-  const topRecipientIds = await api("recipients/base", {
+  const scheme = await getScheme(scheme_id);
+  const topRecipients = await getRecipientsChained({
     scheme_id,
-    recipient_name__null: false,
-    amount__null: false,
     order_by: "-amount_sum",
     limit: 5,
   });
-  const topRecipientsRes = await Promise.all(
-    topRecipientIds.map(({ id }) => api("recipients", { recipient_id: id }))
-  );
-  const topRecipients = topRecipientsRes.flat();
 
-  return { props: { scheme: schemes[0], topRecipients, ...ctx } };
+  return { props: { scheme, topRecipients, ...ctx } };
 }
