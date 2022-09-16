@@ -55,8 +55,7 @@ export function Hero({ ...navProps }) {
       <header className={styles.root}>
         <Container className={styles.hero} fluid>
           <Row>
-            <Col md={3} />
-            <Col md={6} className={styles.heroInner}>
+            <Col lg={{ span: 6, offset: 3 }} className={styles.heroInner}>
               <h1 className={styles.heroClaim}>
                 The European Union spends around €59 billion a year on farm
                 subsidies.
@@ -83,7 +82,6 @@ export function Hero({ ...navProps }) {
                 </Link>
               </Stack>
             </Col>
-            <Col md={3} />
           </Row>
         </Container>
       </header>
