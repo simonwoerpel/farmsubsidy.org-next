@@ -11,7 +11,7 @@ const COLUMNS = {
   countries: {
     name: "Countries",
     selector: (r) => r.countries,
-    cell: (r) => r.countries.map((c) => <CountryLink key={c} country={c} />),
+    cell: (r) => r.countries.map((c) => <CountryLink key={c} country={c} flagonly />),
   },
   oldest: {
     name: "Oldest",

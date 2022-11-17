@@ -34,7 +34,7 @@ const COLUMNS = {
   scheme: {
     name: "Scheme",
     selector: (r) => r.scheme,
-    cell: (r) => <SchemeLink id={r.scheme_id} name={r.scheme} />,
+    cell: (r) => r.scheme ? <SchemeLink id={r.scheme_id} name={r.scheme} /> : null,
     column: "scheme",
     id: "scheme",
     sortable: true,
