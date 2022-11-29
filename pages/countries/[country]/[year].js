@@ -4,6 +4,7 @@ import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";
 import RecipientsTable from "~/components/recipientsTable.js";
 import CountryYearsTable from "~/components/countryTable.js";
+import LegalNotice from "~/components/legalNotice.js";
 import {
   getCountry,
   getCountries,
@@ -12,6 +13,7 @@ import {
 } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 import { CountryYearLink } from "~/lib/links.js";
+import { PUBLIC_YEARS } from "~/lib/settings.js";
 
 export default function CountryYear({
   country,
@@ -46,6 +48,8 @@ export default function CountryYear({
           columnsExclude={["country"]}
           actions={actions}
         />
+
+        {PUBLIC_YEARS.indexOf(parseInt(year)) < 0 ? <LegalNotice /> : null}
 
         <CountryYearsTable
           title={`Available years for ${country.name}`}

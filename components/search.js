@@ -8,11 +8,13 @@ import { CustomPage } from "~/components/pages.js";
 import { Content, Sidebar } from "~/components/container.js";
 import SearchForm from "~/components/searchForm.js";
 import ErrorAlert from "~/components/errorAlert.js";
+import LegalNotice from "~/components/legalNotice.js";
 import { DownloadWidget, AggregationWidget } from "~/components/widgets.js";
 import { Numeric } from "~/components/util.js";
 import { shorten } from "~/lib/util.js";
 import { COUNTRYNAMES } from "~/lib/context.js";
 import { getAggregation } from "~/lib/api.js";
+import { PUBLIC_YEARS } from "~/lib/settings.js";
 
 const ActiveFilters = ({ handleClear, filters }) => {
   const visibleFilters = ["year", "country", "location", "scheme"];
@@ -23,7 +25,10 @@ const ActiveFilters = ({ handleClear, filters }) => {
         .map(([key, value]) => (
           <Badge bg="secondary" key={key}>
             {shorten(value)}
-            <CloseButton variant="white" onClick={() => handleClear({ [key]: null })} />
+            <CloseButton
+              variant="white"
+              onClick={() => handleClear({ [key]: null })}
+            />
           </Badge>
         ))}
     </Stack>
@@ -118,6 +123,8 @@ export default function SearchPage({
     actions: <ActiveFilters handleClear={updateApiState} filters={query} />,
   };
 
+  const { year } = apiState.query;
+
   return (
     <CustomPage hideSearchForm {...ctx}>
       <Content>
@@ -129,6 +136,7 @@ export default function SearchPage({
 
         <SearchForm {...formProps} />
         <ResultComponent {...tableProps} />
+        {PUBLIC_YEARS.indexOf(parseInt(year)) < 0 ? <LegalNotice /> : null}
       </Content>
       <Sidebar>
         <DownloadWidget {...apiState} />

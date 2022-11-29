@@ -4,9 +4,11 @@ import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";
 import RecipientsTable from "~/components/recipientsTable.js";
 import CountryYearsTable from "~/components/countryTable.js";
+import LegalNotice from "~/components/legalNotice.js";
 import { getCountry, getRecipientsChained, getYears } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 import { CountryLink } from "~/lib/links.js";
+import { PUBLIC_YEARS } from "~/lib/settings.js";
 
 export default function Country({
   country,
@@ -19,12 +21,14 @@ export default function Country({
     <CountryLink.Payments {...country} key="payments" />,
   ];
 
+  const years = PUBLIC_YEARS.join(" - ");
+
   return (
     <CustomPage {...ctx}>
       <Content>
         <header>
           <h1>{country.name}</h1>
-          <h3>EU Farm subsidies for all available years</h3>
+          <h3>EU Farm subsidies for {years}</h3>
         </header>
 
         <p>
@@ -35,11 +39,13 @@ export default function Country({
         </p>
 
         <RecipientsTable
-          title="Top recipients"
+          title={`Top recipients (${years})`}
           recipients={topRecipients}
           columnsExclude={["country"]}
           actions={actions}
         />
+
+        <LegalNotice />
 
         <CountryYearsTable
           title={`Available years for ${country.name}`}

@@ -61,7 +61,6 @@ export async function getStaticProps({
     order_by: "-amount_sum",
     limit: 5,
   });
-  console.log(topRecipients)
 
   return { props: { scheme, topRecipients, ...ctx } };
 }
