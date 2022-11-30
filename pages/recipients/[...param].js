@@ -6,6 +6,7 @@ import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";
 import LoadingPlaceholder from "~/components/placeholder.js";
 import RecipientPaymentsTable from "~/components/paymentsTable.js";
+import LegalNotice from "~/components/legalNotice.js";
 import { Numeric } from "~/components/util.js";
 import { CountryLink, LocationLink, RecipientLink } from "~/lib/links.js";
 import { getRecipients, getRecipient, getPayments } from "~/lib/api.js";
@@ -32,6 +33,7 @@ export default function Recipient({ recipient, payments = [], ...ctx }) {
 
         <LoadingPlaceholder as="p" isLoading={router.isLoading}>
           <RecipientPaymentsTable payments={payments} recipient={recipient} />
+          <LegalNotice />
         </LoadingPlaceholder>
       </Content>
       <Sidebar>
@@ -50,7 +52,7 @@ export default function Recipient({ recipient, payments = [], ...ctx }) {
                     href={LocationLink.getUrl({ location: x })}
                     key={x}
                     passHref
-                  >
+                    legacyBehavior>
                     <ListGroup.Item action>{x}</ListGroup.Item>
                   </Link>
                 ))}
