@@ -5,6 +5,7 @@ import { CustomPage } from "~/components/pages.js";
 import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";
 import RecipientsTable from "~/components/recipientsTable.js";
+import LegalNotice from "~/components/legalNotice.js";
 import { getSchemes, getScheme, getRecipientsChained } from "~/lib/api.js";
 import { SchemeLink } from "~/lib/links.js";
 import getCachedContext from "~/lib/context.js";
@@ -30,6 +31,8 @@ export default function Scheme({ scheme, topRecipients, ...ctx }) {
             actions={actions}
           />
         </div>
+
+        <LegalNotice />
       </Content>
       <Sidebar>
         <AmountWidget title="Total amount" value={scheme.amount_sum}>
