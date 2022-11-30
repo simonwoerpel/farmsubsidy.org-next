@@ -11,31 +11,29 @@ import styles from "./header.module.scss";
 
 function CowHeader({ ...navProps }) {
   // deprecated
-  return (
-    <>
-      <header>
-        <Container className={styles.root} fluid>
-          <Row>
-            <Col md={6}>
-              <div className={styles.cow}>
-                <Link href="/">
-                  <a>
-                    <Image
-                      className={styles.cowImg}
-                      src="/images/cow.svg"
-                      alt="FarmSubsidy Euro Cow"
-                      layout="fill"
-                    />
-                  </a>
-                </Link>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </header>
-      <Navbar {...navProps} />
-    </>
-  );
+  return <>
+    <header>
+      <Container className={styles.root} fluid>
+        <Row>
+          <Col md={6}>
+            <div className={styles.cow}>
+              <Link href="/">
+
+                <Image
+                  className={styles.cowImg}
+                  src="/images/cow.svg"
+                  alt="FarmSubsidy Euro Cow"
+                  layout="fill"
+                />
+
+              </Link>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </header>
+    <Navbar {...navProps} />
+  </>;
 }
 
 export default function Header({ ...navProps }) {
@@ -50,42 +48,40 @@ export default function Header({ ...navProps }) {
 }
 
 export function Hero({ ...navProps }) {
-  return (
-    <>
-      <header className={styles.root}>
-        <Container className={styles.hero} fluid>
-          <Row>
-            <Col lg={{ span: 6, offset: 3 }} className={styles.heroInner}>
-              <h1 className={styles.heroClaim}>
-                The European Union spends around €59 billion a year on farm
-                subsidies.
-                <br />
-                <br />
-                This site tells you who receives the money.
-              </h1>
-              <SimpleSearchForm size="lg" />
-              <Stack direction="horizontal" gap={3}>
-                <Link href="/countries" passHref>
-                  <Button size="lg" variant="secondary">
-                    Countries
-                  </Button>
-                </Link>
-                <Link href="/schemes" passHref>
-                  <Button size="lg" variant="secondary">
-                    Schemes
-                  </Button>
-                </Link>
-                <Link href="/search/locations" passHref>
-                  <Button size="lg" variant="secondary">
-                    Locations
-                  </Button>
-                </Link>
-              </Stack>
-            </Col>
-          </Row>
-        </Container>
-      </header>
-      <Navbar hideSearchForm {...navProps} />
-    </>
-  );
+  return <>
+    <header className={styles.root}>
+      <Container className={styles.hero} fluid>
+        <Row>
+          <Col lg={{ span: 6, offset: 3 }} className={styles.heroInner}>
+            <h1 className={styles.heroClaim}>
+              The European Union spends around €59 billion a year on farm
+              subsidies.
+              <br />
+              <br />
+              This site tells you who receives the money.
+            </h1>
+            <SimpleSearchForm size="lg" />
+            <Stack direction="horizontal" gap={3}>
+              <Link href="/countries" passHref legacyBehavior>
+                <Button size="lg" variant="secondary">
+                  Countries
+                </Button>
+              </Link>
+              <Link href="/schemes" passHref legacyBehavior>
+                <Button size="lg" variant="secondary">
+                  Schemes
+                </Button>
+              </Link>
+              <Link href="/search/locations" passHref legacyBehavior>
+                <Button size="lg" variant="secondary">
+                  Locations
+                </Button>
+              </Link>
+            </Stack>
+          </Col>
+        </Row>
+      </Container>
+    </header>
+    <Navbar hideSearchForm {...navProps} />
+  </>;
 }

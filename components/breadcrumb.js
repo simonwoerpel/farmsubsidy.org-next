@@ -48,12 +48,12 @@ export default function FSBreadcrumb() {
   const leaf = crumbs.pop();
   return (
     <Breadcrumb className={styles.root}>
-      <Link href="/" passHref>
+      <Link href="/" passHref legacyBehavior>
         <Breadcrumb.Item>Start</Breadcrumb.Item>
       </Link>
       {crumbs.map(({ label, url }) =>
         !!url ? (
-          <Link href={url} passHref key={url}>
+          <Link href={url} passHref key={url} legacyBehavior>
             <Breadcrumb.Item>{label}</Breadcrumb.Item>
           </Link>
         ) : (

@@ -6,7 +6,7 @@ export function RecipientList({ items }) {
   return (
     <ListGroup variant="flush">
       {items.map((i) => (
-        <Link href={RecipientLink.getUrl({ ...i })} key={i.id} passHref>
+        <Link href={RecipientLink.getUrl({ ...i })} key={i.id} passHref legacyBehavior>
           <ListGroup.Item action>
             <RecipientLink.Label {...i} />
           </ListGroup.Item>
@@ -19,7 +19,11 @@ export function CountryList({ items }) {
   return (
     <ListGroup variant="flush">
       {items.map(({ country }) => (
-        <Link href={CountryLink.getUrl({ country })} key={country} passHref>
+        <Link
+          href={CountryLink.getUrl({ country })}
+          key={country}
+          passHref
+          legacyBehavior>
           <ListGroup.Item action>
             <CountryLink.Label country={country} />
           </ListGroup.Item>

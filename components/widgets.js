@@ -45,7 +45,7 @@ export function DownloadWidget({ title = "Data", ...props }) {
       </Card.Body>
       <Card.Footer className="text-muted">
         <Link href="/data">
-          <a>Information about the data</a>
+          Information about the data
         </Link>
       </Card.Footer>
     </Card>

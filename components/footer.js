@@ -14,12 +14,12 @@ export default function Footer() {
             <ul className="list-unstyled">
               <li>
                 <Link href="/legal">
-                  <a>Legal / Privacy Policy</a>
+                  Legal / Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link href="/about">
-                  <a>About us</a>
+                  About us
                 </Link>
               </li>
             </ul>

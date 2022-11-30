@@ -49,7 +49,7 @@ function StyledWidget({ header, title, children, footer }) {
 
 function Sidebar({ children }) {
   return (
-    <Col className={styles.sidebar}>
+    <Col className={styles.sidebar} xl={3} lg={4} md={4} sm={5}>
       {children}
       <Widget>
         <div className="text-center">

@@ -70,7 +70,7 @@ const Amount = ({ value }) => (
 
 const Recipients = ({ link, ...r }) => (
   <Stack direction="horizontal">
-    <Link href={link.getRecipientsUrl(r)} passHref>
+    <Link href={link.getRecipientsUrl(r)} passHref legacyBehavior>
       <Button variant="secondary-outline" size="sm">
         <FontAwesomeIcon
           icon={faMagnifyingGlass}

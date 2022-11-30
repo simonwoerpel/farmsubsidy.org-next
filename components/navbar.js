@@ -13,7 +13,7 @@ export default function MainNavbar({ countries, years, hideSearchForm }) {
   return (
     <Navbar variant="dark" sticky="top" className={styles.root}>
       <Container fluid className={styles.container}>
-        <Link href="/" passHref>
+        <Link href="/" passHref legacyBehavior>
           <Navbar.Brand className={styles.brand}>
             <strong>FarmSubsidy</strong>.org
           </Navbar.Brand>
@@ -21,13 +21,13 @@ export default function MainNavbar({ countries, years, hideSearchForm }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link href="/about" passHref>
+            <Link href="/about" passHref legacyBehavior>
               <Nav.Link className={styles.link}>About</Nav.Link>
             </Link>
-            <Link href="/faq" passHref>
+            <Link href="/faq" passHref legacyBehavior>
               <Nav.Link className={styles.link}>FAQ</Nav.Link>
             </Link>
-            <Link href="/data" passHref>
+            <Link href="/data" passHref legacyBehavior>
               <Nav.Link className={styles.link}>Data</Nav.Link>
             </Link>
             <NavDropdown
@@ -35,7 +35,7 @@ export default function MainNavbar({ countries, years, hideSearchForm }) {
               id="countries-nav-dropdown"
               className={styles.dropdown}
             >
-              <Link href="/countries" passHref>
+              <Link href="/countries" passHref legacyBehavior>
                 <NavDropdown.Item>All Countries</NavDropdown.Item>
               </Link>
               {countries?.length > 0 && (
@@ -46,7 +46,7 @@ export default function MainNavbar({ countries, years, hideSearchForm }) {
                       href={CountryLink.getUrl({ country })}
                       key={country}
                       passHref
-                    >
+                      legacyBehavior>
                       <NavDropdown.Item>
                         <CountryLink.Label country={country} />
                       </NavDropdown.Item>
@@ -62,16 +62,16 @@ export default function MainNavbar({ countries, years, hideSearchForm }) {
                 className={styles.dropdown}
               >
                 {years.sort().map(({ year }) => (
-                  <Link href={YearLink.getUrl({ year })} key={year} passHref>
+                  <Link href={YearLink.getUrl({ year })} key={year} passHref legacyBehavior>
                     <NavDropdown.Item>{year}</NavDropdown.Item>
                   </Link>
                 ))}
               </NavDropdown>
             )}
-            <Link href="/schemes" passHref>
+            <Link href="/schemes" passHref legacyBehavior>
               <Nav.Link className={styles.link}>Schemes</Nav.Link>
             </Link>
-            <Link href="/search/locations" passHref>
+            <Link href="/search/locations" passHref legacyBehavior>
               <Nav.Link className={styles.link}>Locations</Nav.Link>
             </Link>
           </Nav>
