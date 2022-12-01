@@ -11,7 +11,7 @@ export default function LegalNotice() {
         two years ({years}).
       </p>
       <p>
-        Please <Link href="/access">contact us</Link> if you are a researcher or
+        Please <Link href="mailto:farmsubsidy@okfn.de">contact us</Link> if you are a researcher or
         journalist to get access to the full data.
       </p>
     </Alert>
