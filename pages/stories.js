@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Papa from "papaparse";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,6 +8,13 @@ import { Page } from "~/components/pages.js";
 import Flag from "~/components/countryFlag.js";
 import getCachedContext from "~/lib/context.js";
 import { STORIES_CSV_URL } from "~/lib/settings.js";
+
+async function getStories() {
+  const res = await fetch(STORIES_CSV_URL);
+  const csv = await res.text();
+  const { data: stories } = Papa.parse(csv, { header: true });
+  return stories;
+}
 
 const Story = ({ story }) => (
   <Card border="primary" style={{ width: "18rem", margin: 10 }}>
@@ -23,12 +31,23 @@ const Story = ({ story }) => (
         {story.published_at}
       </Card.Subtitle>
       <Card.Text>{story.teaser}</Card.Text>
-      {story.url ? <Card.Link href={story.url}>Read story</Card.Link> : <span>Coming soon</span>}
+      {story.url ? (
+        <Card.Link href={story.url}>Read story</Card.Link>
+      ) : (
+        <span>Coming soon</span>
+      )}
     </Card.Body>
   </Card>
 );
 
 export default function MarkdownPage({ countries, years, stories }) {
+  const [remoteStories, setStories] = useState(stories);
+
+  // reload stories on mount
+  useEffect(() => {
+    getStories().then(setStories);
+  }, []);
+
   return (
     <Page countries={countries} years={years}>
       <header className="page-heading">
@@ -44,7 +63,7 @@ export default function MarkdownPage({ countries, years, stories }) {
         <p>You can find the stories below as soon as they get published.</p>
         <Container>
           <Row>
-            {stories.map((s) => (
+            {remoteStories.map((s) => (
               <Story key={s.url} story={s} />
             ))}
           </Row>
@@ -56,8 +75,6 @@ export default function MarkdownPage({ countries, years, stories }) {
 
 export async function getStaticProps() {
   const ctx = await getCachedContext();
-  const res = await fetch(STORIES_CSV_URL);
-  const csv = await res.text();
-  const { data: stories } = Papa.parse(csv, { header: true });
+  const stories = await getStories();
   return { props: { ...ctx, stories } };
 }
