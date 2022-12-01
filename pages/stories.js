@@ -32,7 +32,7 @@ const Story = ({ story }) => (
       </Card.Subtitle>
       <Card.Text>{story.teaser}</Card.Text>
       {story.url ? (
-        <Card.Link href={story.url}>Read story</Card.Link>
+        <Card.Link href={story.url}>Read story [{story.language}]</Card.Link>
       ) : (
         <span>Coming soon</span>
       )}
@@ -45,7 +45,7 @@ export default function MarkdownPage({ countries, years, stories }) {
 
   // reload stories on mount
   useEffect(() => {
-    getStories().then(stories => setStories(stories));
+    getStories().then((stories) => setStories(stories));
   }, []);
 
   return (
