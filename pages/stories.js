@@ -45,7 +45,7 @@ export default function MarkdownPage({ countries, years, stories }) {
 
   // reload stories on mount
   useEffect(() => {
-    getStories().then(setStories);
+    getStories().then(stories => setStories(stories));
   }, []);
 
   return (
