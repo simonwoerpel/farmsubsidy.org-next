@@ -82,7 +82,7 @@ export function AggregationWidget({
           </Placeholder>
         ) : (
           <Card.Title>
-            <Numeric.IntWord value={amount_sum} append="Euro" />
+            <Numeric.IntWord value={amount_sum || 0} append="Euro" />
           </Card.Title>
         )}
         {loading ? (
@@ -111,7 +111,8 @@ export function AggregationWidget({
       </Card.Body>
       <Card.Footer className="text-muted">
         Please note that these numbers only summarise the contents of our
-        database and are <em>not</em> official statistics.
+        database and are <em>not</em> official statistics. Plus, due to legal
+        reasons, not all data is public on this platform.
       </Card.Footer>
     </Card>
   );
