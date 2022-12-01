@@ -21,7 +21,7 @@ export default function Index({ countries, years, topRecipients }) {
           citizens.
         </p>
 
-        <h3>December 2021</h3>
+        <h3>December 2022</h3>
 
         <p>
           In cooperation with WDR, NDR, Süddeutsche Zeitung, Correctiv, Der
