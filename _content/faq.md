@@ -1,131 +1,199 @@
 ---
-title: FAQs
+title: About EU farm subsidies
 ---
 
-## What's this all about?
+### What are EU farm subsidies?
 
-The aim of farmsubsidy.org is to obtain detailed data relating to payments and
-recipients of farm subsidies in every EU member state and make this data
-available in a way that is useful to European citizens. Farmsubsidy.org is run
-by the Open Knowledge Foundation Germany, a non-profit.
+Farm subsidies are EU payments to public authorities, companies and farmers who
+are active in the agricultural sector and/or contribute to its maintenance.
+Subsidies are financed by taxpayers' money, primarily through the EU, but the
+Member States also contribute financially in a direct way. Subsidies are part
+of the EU's Common Agricultural Policy (CAP), which came into force in 1962.
 
-## Where do you get this information from?
+### How much money is spent on it?
 
-All the data presented on this website has either been published directly by EU
-country governments, or obtained from them by freedom of information requests.
+The [budget for the CAP](https://www.europarl.europa.eu/factsheets/en/sheet/106/financing-of-the-cap)
+is the largest item in the EU budget. Between 2014 and 2020, it was around 38
+percent of total expenditure, a total of 408.31 million euros. For the period
+2021 to 2027, 387 million euros are earmarked, 31 percent of the total budget.
 
-## I think there are mistakes in your data!
+### How is the money distributed?
 
-In several cases we have discovered discrepancies, inaccuracies and
-straightforward mistakes in the data published or released to us and wherever
-possible we have queried this with the relevant government agencies.
-Ultimately, the data available on this site is only as good as the data we have
-received from the governments. We do not change the data we have received from
-governments so if you think you have identified an error in the data you should
-notify the relevant government agency and, if possible, let us know too.
+The budget for agricultural subsidies is divided among the member states.
+France, Spain, Germany and Italy are at the top of the list. The member states
+are responsible for passing on the money as well as for checking that the rules
+for the subsidies are respected.
 
-## Are you for or against farm subsidies?
+There are two so-called "pillars" into which the budget is divided.
 
-This project is the work of a diverse group of journalists and open data
-activists committed to increasing the transparency of the Common Agricultural
-Policy. We do not share any view of how farm subsidies should operate, other
-than in a transparent and open way. We hope that the release of data on the
-website will help European citizens to become better informed about how their
-money is being spent and contribute to a constructive debate about EU food and
-farming policy. While those involved in the project may hold their own opinions
-about the Common Agricultural Policy, farmsubsidy.org has no common position
-other than the need for greater transparency. If you want to debate the CAP,
-you'll find several of the members of the farmsubsidy.org network blogging at
-[capreform.eu](http://capreform.eu/), the group blog on the future of European
-rural, farming and food policy.
+- The [first pillar](https://www.europarl.europa.eu/factsheets/de/sheet/109/die-erste-saule-der-gemeinsamen-agrarpolitik-gap-ii-direktzahlungen-an-inhaber-l)
+  is the larger one and is financed entirely by EU funds. These are direct
+  payments to the owners of farms. Which farm receives how much money is
+  calculated per hectare of utilised agricultural area.
+- The [second pillar](https://www.europarl.europa.eu/factsheets/en/sheet/110/die-zweite-saule-der-gap-politik-zur-entwicklung-des-landlichen-raums)
+  is co-financed by the EU member states, but is smaller in total. To whom and
+  for what the money is spent is more diverse in this pillar. It is not
+  distributed generally, but is earmarked for specific purposes and projects.
+  Basically, these funds are intended to support "rural development".
 
-## Isn't this project making life even harder for European farmers?
+### Why do agricultural subsidies exist at all?
 
-No, we don't think so. Many farmers have told us that they are not in the least
-bit ashamed of receiving public money as they believe they provide important
-public services. Others have told us that they think the subsidies are unfair
-and this should be revealed. Data relating to farm subsidy payments has been
-available in the United States for several years, courtesy of our friends at
-the [Environmental Working Group](http://ewg.org/farm) and more recently the
-Mexican government has released farm subsidy data too.
+The CAP is one of the EU's oldest policies. Five years before it was
+established, it was already an important issue when the founding treaty of the
+European Economic Community was signed.
 
-## What about the privacy of people listed on the website?
+The aim of a common agricultural policy was to increase agricultural
+productivity in order to stabilise the agricultural market and meet the demand
+for food in post-war Europe.
 
-Personal privacy is important but so is fiscal transparency, anti-corruption
-and government accountability. We are careful to strike the correct balance. We
-do not believe that the information published on the site relates to any
-individual's personal situation, rather to his or her professional activities
-as a farmer or landowner.
+### What has happened since the CAP was introduced?
 
-## Who is funding the project?
+The CAP and the distribution of subsidies that goes with it have been changed
+somewhat a few times over the last 60 years. To understand how the current
+system is structured, it helps to look back:
 
-The project is run by the [Open Knowledge Foundation Germany](https://okfn.de/).
+In the beginning, a system was introduced that guaranteed farmers a price for
+their products. In an emergency, the state intervened to regulate the market
+price. Relatively quickly, food production was more than sufficient to supply
+the population of the EU states. What stagnated, however, was the income of
+farmers.
 
-**Currently this project is not funded, but maintained by volunteers.**
+An adjustment to this effect was to follow in 1970. The agricultural
+commissioner at the time wanted to merge farms in order to increase their size.
+In this way, they would produce more efficiently, earn more profit, but still
+offer favourable prices. His credo: more market orientation, less state
+regulation. Although this was not implemented in full force, it laid the
+foundation for later reforms and the current system.
 
-EU Transparency and DICAR (Danish International Center for Analytical
-Reporting), which founded farmsubsidy.org, have received funding for their farm
-subsidy transparency work as follows:
+The result: a surplus of products. The end of the 1970s saw the so-called
+"butter mountains". There were too much butter and other agricultural products,
+all of which could not be eaten or drunk. The state intervened and bought
+products to keep the price somewhat stable. Some was distributed, but much was
+thrown away. In 1984, the EU therefore introduced a quota for certain products,
+such as milk. Those who produced in surplus were now asked to pay.
 
-- The William and Flora Hewlett Foundation (a total of $516,000 from 2006 to 2009)
-- The German Marshall Fund of the United States ($165,000 in 2010)
-- The Open Society Foundation (€22,800 in 2006)
-- The European Social Fund (€60,000 from 2005 to 2006).
-- The Renewable Freedom Foundation (€5,000 in 2014)
+In 1992, with the McSherry reform, subsidies shifted from intervention in the
+market to direct payments for farmers, so-called premiums. The payments were
+assessed per hectare of land - and still are today.
 
-In addition, the various organisations and individuals involved in the project
-(e.g. NGOs, media and universities) have their own sources of funding.
+At the end of the 1990s, another pillar was added to these direct payments.
+Payments from the money pot of Pillar 2 are intended to promote the development
+of rural areas. This supports not only farmers, but also businesses,
+associations and authorities. This system is still in place today.
 
-## Why does the amount of data differ from one country to another?
+The currently valid regulation for the distribution of funds dates from 2014
+and is the basis for the distribution of subsidies, which we have analysed
+together with our media partners.
 
-Prior to 2008, the decision to release data was taken at the level of member
-states (or regions), therefore it is possible that data has be released in
-different formats. We regularly update our
-[Transparency Index](https://farmsubsidy.org/transparency/) which ranks
-countries according to the level of disclosure. We hope that as more and more
-governments release data they will do so according to a common format so that
-it is possible to analyse the data in a meaningful way across the European
-Union.
+### How have agricultural subsidies been distributed since 2014?
 
-## Why is there data from some years and not others?
+The distribution of funds was to include above all "climate change, animal
+welfare, food safety and sustainable use of natural resources". The so-called
+"greening" was introduced. In order to receive these direct payments,
+conditions must be fulfilled: Cultivation of different crops, preservation of
+permanent grassland as well as designation of ecological priority areas. A
+premium for young farmers and a maximum level of financial support for large
+farms were also established.
 
-Prior to 2008, the decision to release data was taken at the level of member
-states (or regions) and many refused to release any data at all. Many countries
-only began publishing data in 2008. The furthest we go back is 2000, but for
-most countries nowhere near all years are covered.
+However, greening has long been criticised.
+[A study commissioned by the Federal Environment Agency and conducted by the Thünen Institute concludes (in German)](https://www.umweltbundesamt.de/sites/default/files/medien/479/publikationen/texte_75-2022_evaluierung_der_gap-reform_von_2013.pdf)
 
-## Why do some recipients appear in the data multiple times?
+*"While it has been possible to stem the loss of land, greening has not
+contributed to species protection and crop diversification, among other things.
+Likewise, many measures, such as the provision of fallow land and flower
+strips, are not sufficiently implemented. Toxic pesticides continue to be used
+and there is still a nitrogen surplus in agricultural soils."*
 
-Most recipients receive money every year, and some companies receive very large
-number of payments each year. We do our best to identify identical recipients
-within the data but this is very difficult without unique ID codes. Unlike the
-US and Mexican governments, the governments of the EU do not publish unique
-recipient ID codes that would allow us to track the same recipient over
-different years and different data sets. This means it is quite possible that
-the same recipient crops in the data more than once. This is one of the reasons
-we have provided the List tool, which allows users of the website to make lists
-of recipients and publish them. One application of the List tool is to group
-together all the payments going to a large company and all its various
-subsidiary companies.
 
-## Why doesn't my search work? Why am I experiencing problems accessing the website?
+### New regulations are coming in January 2023. What is changing?
 
-We are still ironing out technical issues. So please be patient but do not
-hesitate to get in touch if something is not working or you have suggestions
-for how it could work better.
+The CAP is renegotiated every seven years. Actually, the new rules should have
+been introduced already in 2020, but it was not possible to reach an agreement
+sooner.
 
-## How can I get involved?
+The EU has set itself ambitious goals for the period from 2023 to 2027 because
+the measures are to be agreed with the goals of the Green Deal. However, these
+targets are not legally binding.
+- Reduction of the use of pesticides by 50 percent
+- Reduction of soil nutrient loss by 50 percent
+- at least 25 percent of farms are organic
+- at least 10 percent of the land has structural elements with high
+  biodiversity (flower strips, hedges, etc.)
 
-If you think you could help out with the project, please get in touch. We are
-particularly keen to make contact with people who want to help obtain farm
-subsidy data in the member states where it has not yet been released. We also
-welcome donations to help continue our work. And we'd love to have more users
-to test out new features we're developing.
+How exactly this is to be implemented is primarily in the hands of the member
+states. They must draw up so-called "National Strategy Plans". The plans are
+then examined and approved by the Commission.
 
-## Can I have the source data on your website?
+The previous principle of the two pillars will continue to exist. However, the
+relationship between the two areas is to change. There will be fewer direct
+payments to farmers and instead more money for rural development.
 
-Yes, [data is available here](http://data.farmsubsidy.org) under the ODbL.
+Greening will be abolished. Instead, so-called eco-schemes will be introduced.
+These are one-year measures that could bring premiums. The aim is to create
+incentives for organic farming.
 
-## How can I contact you?
+### Why is the system of EU agricultural subsidies controversial?
 
-Send an email to farmsubsidy[at]openspending.org.
+The distribution of agricultural subsidies is based on a very complex system.
+This is above all a disadvantage for farmers. In addition to their time in the
+barn or in the field, they still have to think their way through directives and
+paragraphs.
+
+Moreover, numerous associations in the field of climate, environmental and
+species protection criticise that only the big players benefit and that the
+distribution does not contribute to a transformation of agriculture, which is
+needed in view of climate change.
+
+[IFOAM](https://www.organicseurope.bio/content/uploads/2022/03/IFOAMEU_CAP_SP_feedback_20220303_final.pdf?dd),
+the International Federation of Ecological Land Movements, writes on the
+current regulations:
+
+*“Overall, IFOAM Organics Europe is very concerned about the insufficient
+ambition and budgets to incentivise more farmers to convert to organic farming,
+and to reward organic farmers for the public goods they provide. More
+specifically, in comparison to the current CAP period (2014-2022), our members
+are concerned with the decrease of a comparative advantage for conversion of
+conventional farms to organic farming, compared to incentives to adopt other
+types of farming practices that are less transformative and provide much less
+environmental benefits. This alarming situation is mainly due to the lack of
+environmental ambition of the eco-schemes criteria as well as to issues for
+organic farmers to combine organic schemes with eco-schemes or
+agri-environmental and climate measures (AECMs).”*
+
+[Bird Life and the European Environmental Bureau](https://eeb.org/wp-content/uploads/2022/02/CAP-Strategic-Plans-are-they-likely-to-deliver-on-given-promises.pdf) says:
+
+*“our assessment showed that the overwhelming majority of national strategic
+plans fall short of ambitions and lack clear targets, measures and funding to
+halt biodiversity loss and to cut greenhouse gas (GHG) emissions (...)
+According to our national experts, 7 CAP Strategic Plans have changed for the
+worse in one or more of the given categories since November (Latvia, Lithuania,
+Denmark, Spain and Austria)”*
+
+And a study by the
+[Thünen Institute, commissioned by the Federal Environment Agency](https://www.umweltbundesamt.de/sites/default/files/medien/479/publikationen/texte_103-2022_klimaschutz_in_der_gap_2023_-_2027.pdf),
+writes about Germany's plans:
+
+*„Insgesamt bleibt die Wirkung jedoch beschränkt, da kaum eine Maßnahme in der 1.
+Säule den Klimaschutz explizit adressiert.(...) Die im Rahmen der Studie
+durchgeführte maßnahmenspezifische Kalkulation zeigt, dass die Wirksamkeit der
+Öko-Regelungen nicht bei 100 Prozent, wie von der EU-Kommission vorgegeben,
+sondern lediglich bei gut 20 Prozent liegt. Auch für die Direktzahlungen liegt
+der klimawirksame Anteil nach ersten Schätzungen wesentlich niedriger (zwischen
+drei und vier Prozent) als die vorgegebenen 40 Prozent.”*
+
+And even the EU Commission itself is not convinced by the submitted National
+Strategy Plans.
+[Internal letters from the summer of 2022](https://www.arc2020.eu/leaked-letters-reveal-environment-climate-commissions-severe-criticism-of-cap-plans/),
+published by the NGO Arc2020, state:
+
+*“The assessment underpinning this list concerns the sufficiency of MSs’
+changes to the Plan to address the Commission Observations. In some cases, MSs’
+proposals are not in line with the conditionality provisions of the Regulation
+(problem of legal compliance of the SP with the EU rules). In other cases, the
+absence of, or the very low improvement of ambition of the original plan, make
+for an insufficient contribution to the needs identified by MSs themselves and
+to the pieces of environmental legislation listed in Annex XIII of the
+Regulation.”*
+
+
+

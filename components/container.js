@@ -53,19 +53,20 @@ function Sidebar({ children }) {
       {children}
       <Widget>
         <div className="text-center">
-          <a href="https://okfn.de">
+          <a href="https://fragdenstaat.de">
             <Image
-              width="808"
-              height="366"
-              src="/images/okfde.svg"
-              alt="Open Knowledge Foundation Germany"
+              width="191"
+              height="44"
+              src="/images/fds.svg"
+              alt="FragDenStaat.de"
             />
           </a>
         </div>
         <p>
-          FarmSubsidy.org is a project of the{" "}
-          <a href="https://okfn.de">Open Knowledge Foundation Germany</a>, a
-          non-profit organisation working on transparency of public money.
+          FarmSubsidy.org is a project by{" "}
+          <a href="https://fragdenstaat.de">FragDenStaat</a>,
+          the central contact for all questions relating to freedom of
+          information in Germany.
         </p>
       </Widget>
     </Col>

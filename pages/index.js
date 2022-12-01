@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "react-bootstrap/Button";
 import { IndexPage } from "~/components/pages.js";
 import { Content, Sidebar } from "~/components/container.js";
 import { RecipientList, CountryList } from "~/components/lists.js";
@@ -13,23 +14,32 @@ export default function Index({ countries, years, topRecipients }) {
           <h1>Welcome to farmsubsidy.org</h1>
         </header>
 
-        <p className="lead">
-          The European Union spends around €59 billion a year on farm subsidies.
-          <br />
-          This site tells you who receives the money.
+        <p>
+          The aim of farmsubsidy.org is to obtain detailed data relating to
+          payments and recipients of farm subsidies in every EU member state
+          and make this data available in a way that is useful to European
+          citizens.
         </p>
 
-        <iframe
-          src="//player.vimeo.com/video/6184633"
-          width="100%"
-          height="352"
-          frameBorder="0"
-          webkitallowfullscreen="true"
-          mozallowfullscreen="true"
-          allowFullScreen
-        ></iframe>
+        <h3>December 2021</h3>
 
-        <h2>Official Sources</h2>
+        <p>
+          In cooperation with WDR, NDR, Süddeutsche Zeitung, Correctiv, Der
+          Standard, IrpiMedia, Reporter.lu, Reporters United, Expresso, Follow
+          The Money and Gazeta Wyborcza, FragDenStaat analysed the data and
+          published it jointly in December 2022.{" "}
+          <Link href="/stories">Here is what we have found</Link>.
+        </p>
+
+        <h3>Information</h3>
+
+        <ul>
+          <li><Link href="/faq">About EU farm subsidies</Link></li>
+          <li><Link href="/data">About the data</Link></li>
+          <li><Link href="/search">Start exploring!</Link></li>
+        </ul>
+
+        <h4>Official Sources</h4>
 
         <p>Official sources on the CAP/European agricultural policy.</p>
 
@@ -54,20 +64,6 @@ export default function Index({ countries, years, topRecipients }) {
           </li>
         </ul>
 
-        <h2>Basic Information</h2>
-        <p>Some basic information to start reading.</p>
-
-        <ul>
-          <li>
-            <a
-              href="http://en.wikipedia.org/wiki/Common_Agricultural_Policy"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Wikipedia - Common Agricultural Policy (CAP)
-            </a>
-          </li>
-        </ul>
       </Content>
       <Sidebar>
         <Sidebar.Widget title="All Time Top Recipients">

@@ -14,12 +14,12 @@ export default function Footer() {
             <ul className="list-unstyled">
               <li>
                 <Link href="/legal">
-                  Legal / Privacy Policy
+                  Legal / Impressum
                 </Link>
               </li>
               <li>
                 <Link href="/about">
-                  About us
+                  About this project
                 </Link>
               </li>
             </ul>
@@ -39,7 +39,7 @@ export default function Footer() {
             <h5>Technical</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="https://github.com/okfde/farmsubsidy.org">
+                <a href="https://github.com/okfde/farmsubsidy-store">
                   Get the code
                 </a>
               </li>

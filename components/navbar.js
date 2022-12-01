@@ -24,11 +24,11 @@ export default function MainNavbar({ countries, years, hideSearchForm }) {
             <Link href="/about" passHref legacyBehavior>
               <Nav.Link className={styles.link}>About</Nav.Link>
             </Link>
-            <Link href="/faq" passHref legacyBehavior>
-              <Nav.Link className={styles.link}>FAQ</Nav.Link>
-            </Link>
             <Link href="/data" passHref legacyBehavior>
               <Nav.Link className={styles.link}>Data</Nav.Link>
+            </Link>
+            <Link href="/stories" passHref legacyBehavior>
+              <Nav.Link className={styles.link}>Stories</Nav.Link>
             </Link>
             <NavDropdown
               title="Countries"
