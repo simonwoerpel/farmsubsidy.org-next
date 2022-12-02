@@ -21,11 +21,7 @@ const Story = ({ story }) => (
     <Card.Body>
       <Card.Title>
         <Flag iso={story.country} />
-        {story.publisher_url ? (
-          <Card.Link href={story.publisher_url}>{story.publisher}</Card.Link>
-        ) : (
-          story.publisher
-        )}
+        {story.publisher}
       </Card.Title>
       <Card.Subtitle className="mb-2 text-muted">
         {story.published_at}

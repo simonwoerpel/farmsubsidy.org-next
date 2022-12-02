@@ -14,8 +14,8 @@ of the EU's Common Agricultural Policy (CAP), which came into force in 1962.
 
 The [budget for the CAP](https://www.europarl.europa.eu/factsheets/en/sheet/106/financing-of-the-cap)
 is the largest item in the EU budget. Between 2014 and 2020, it was around 38
-percent of total expenditure, a total of 408.31 million euros. For the period
-2021 to 2027, 387 million euros are earmarked, 31 percent of the total budget.
+percent of total expenditure, a total of 408.31 billion euros. For the period
+2021 to 2027, 387 billion euros are earmarked, 31 percent of the total budget.
 
 ### How is the money distributed?
 
