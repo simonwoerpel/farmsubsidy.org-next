@@ -7,6 +7,7 @@ import styles from "./breadcrumb.module.scss";
 
 const ROUTES = {
   "/[slug]": ({ slug }) => ({ label: slug }), // md pages
+  "/login": () => ({ label: "Login" }),
   "/stories": () => ({ label: "Stories" }),
   "/search": () => ({ label: "Search" }),
   "/search/locations": () => ({ label: "Locations" }),

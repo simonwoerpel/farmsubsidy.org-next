@@ -6,9 +6,9 @@ import { RecipientList, CountryList } from "~/components/lists.js";
 import { getRecipientsChained } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 
-export default function Index({ countries, years, topRecipients }) {
+export default function Index({ ...ctx }) {
   return (
-    <IndexPage countries={countries} years={years}>
+    <IndexPage {...ctx}>
       <Content>
         <header className="page-heading">
           <h1>Welcome to farmsubsidy.org</h1>
@@ -16,9 +16,8 @@ export default function Index({ countries, years, topRecipients }) {
 
         <p>
           The aim of farmsubsidy.org is to obtain detailed data relating to
-          payments and recipients of farm subsidies in every EU member state
-          and make this data available in a way that is useful to European
-          citizens.
+          payments and recipients of farm subsidies in every EU member state and
+          make this data available in a way that is useful to European citizens.
         </p>
 
         <h3>December 2022</h3>
@@ -34,9 +33,15 @@ export default function Index({ countries, years, topRecipients }) {
         <h3>Information</h3>
 
         <ul>
-          <li><Link href="/faq">About EU farm subsidies</Link></li>
-          <li><Link href="/data">About the data</Link></li>
-          <li><Link href="/search">Start exploring!</Link></li>
+          <li>
+            <Link href="/faq">About EU farm subsidies</Link>
+          </li>
+          <li>
+            <Link href="/data">About the data</Link>
+          </li>
+          <li>
+            <Link href="/search">Start exploring!</Link>
+          </li>
         </ul>
 
         <h4>Official Sources</h4>
@@ -63,15 +68,14 @@ export default function Index({ countries, years, topRecipients }) {
             </a>
           </li>
         </ul>
-
       </Content>
       <Sidebar>
         <Sidebar.Widget title="All Time Top Recipients">
-          <RecipientList items={topRecipients} />
+          <RecipientList items={ctx.topRecipients} />
         </Sidebar.Widget>
 
         <Sidebar.Widget title="Browse by country">
-          <CountryList items={countries} />
+          <CountryList items={ctx.countries} />
         </Sidebar.Widget>
       </Sidebar>
     </IndexPage>

@@ -16,7 +16,7 @@ export default function Recipient({ recipient, payments = [], ...ctx }) {
   const router = useRouter();
 
   return (
-    <CustomPage {...ctx}>
+    <CustomPage title={recipient ? recipient.name[0] : null} {...ctx}>
       <Content>
         <header>
           <LoadingPlaceholder isLoading={router.isLoading}>
@@ -52,7 +52,8 @@ export default function Recipient({ recipient, payments = [], ...ctx }) {
                     href={LocationLink.getUrl({ location: x })}
                     key={x}
                     passHref
-                    legacyBehavior>
+                    legacyBehavior
+                  >
                     <ListGroup.Item action>{x}</ListGroup.Item>
                   </Link>
                 ))}

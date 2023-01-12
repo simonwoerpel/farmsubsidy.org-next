@@ -9,7 +9,7 @@ export default function Schemes({ ...ctx }) {
   const [apiState, updateApiState] = useSchemesApi();
 
   return (
-    <CustomPage {...ctx}>
+    <CustomPage title="Payment schemes and measures" {...ctx}>
       <Content>
         <header>
           <h1>Schemes</h1>

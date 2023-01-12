@@ -36,7 +36,7 @@ const Story = ({ story }) => (
   </Card>
 );
 
-export default function MarkdownPage({ countries, years, stories }) {
+export default function StoriesPage({ stories, ...ctx }) {
   const [remoteStories, setStories] = useState(stories);
 
   // reload stories on mount
@@ -45,7 +45,7 @@ export default function MarkdownPage({ countries, years, stories }) {
   }, []);
 
   return (
-    <Page countries={countries} years={years}>
+    <Page title="Stories" {...ctx}>
       <header className="page-heading">
         <h1>Stories</h1>
       </header>

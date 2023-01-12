@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import Papa from "papaparse";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
@@ -7,6 +9,7 @@ import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { getExport } from "~/lib/api.js";
 import { EXPORT_LIMIT } from "~/lib/settings.js";
 import { useDebounce } from "~/lib/util.js";
+import { useAuth } from "~/lib/auth.js";
 import { Numeric } from "./util.js";
 
 const toB64 = (value) => {
@@ -24,8 +27,11 @@ function DownloadButton({
   fileName = "farmsubsidy.csv",
   url,
   count,
+  authenticated,
 }) {
-  const disabled = loading || !url || count > EXPORT_LIMIT;
+  const router = useRouter();
+  const loginUrl = `/login?next=${router.asPath}`;
+  const disabled = !authenticated || loading || !url || count > EXPORT_LIMIT;
 
   return (
     <>
@@ -48,6 +54,13 @@ function DownloadButton({
         )}{" "}
         Download <Numeric value={count} /> rows (csv)
       </Button>
+      {!authenticated && (
+        <div className="text-muted">
+          <Link style={{ fontSize: "1rem" }} href={loginUrl}>
+            Login to download data exports.
+          </Link>
+        </div>
+      )}
       {count > EXPORT_LIMIT && (
         <div className="text-muted">
           Export is limited to 100.000 rows. Please refine your search.
@@ -67,12 +80,13 @@ export default function DownloadCSV({
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const authenticated = useAuth();
 
   // wait for base api and don't change too often
   const delayedShouldLoad = useDebounce(shouldLoad);
 
   useEffect(() => {
-    if (shouldLoad && delayedShouldLoad) {
+    if (authenticated && shouldLoad && delayedShouldLoad) {
       setShouldLoad(false);
       setResult();
       setLoading(true);
@@ -96,14 +110,23 @@ export default function DownloadCSV({
       loading={loading || apiLoading}
       url={result?.export_url}
       count={totalRows}
+      authenticated={authenticated}
     />
   );
 }
 
 export function DownloadCSVSync({ rows, fileName }) {
   // without extra api call
+  const authenticated = useAuth();
   const count = rows.length;
   const csvData = Papa.unparse(rows);
   const url = getDataUrl(csvData);
-  return <DownloadButton url={url} fileName={fileName} count={count} />;
+  return (
+    <DownloadButton
+      url={url}
+      fileName={fileName}
+      count={count}
+      authenticated={authenticated}
+    />
+  );
 }

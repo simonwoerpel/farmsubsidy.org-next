@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import slugify from "slugify";
 import Link from "next/link";
 import Button from "react-bootstrap/Button";
@@ -9,25 +10,50 @@ import LegalNotice from "~/components/legalNotice.js";
 import { getSchemes, getScheme, getRecipientsChained } from "~/lib/api.js";
 import { SchemeLink } from "~/lib/links.js";
 import getCachedContext from "~/lib/context.js";
+import { useAuth } from "~/lib/auth.js";
+
+async function getTopRecipients(scheme_id) {
+  return await getRecipientsChained({
+    scheme_id,
+    order_by: "-amount_sum",
+    limit: 5,
+  });
+}
 
 export default function Scheme({ scheme, topRecipients, ...ctx }) {
+  const authenticated = useAuth();
+  const [recipients, setRecipients] = useState(topRecipients);
+
+  // reload top recipients if we are authenticated after mount
+  useEffect(() => {
+    if (authenticated) {
+      getTopRecipients(scheme.id).then(setRecipients);
+    }
+  }, [authenticated]);
+
   const actions = [
     <SchemeLink.Recipients {...scheme} key="recipients" />,
     <SchemeLink.Payments {...scheme} key="payments" />,
   ];
 
   return (
-    <CustomPage {...ctx}>
+    <CustomPage title={scheme.name} {...ctx}>
       <Content>
         <header>
           <h1>Scheme</h1>
           <h3>{scheme.name}</h3>
         </header>
 
+        {scheme.description && (
+          <div className="section">
+            <p>{scheme.description}</p>
+          </div>
+        )}
+
         <div className="section">
           <RecipientsTable
             title="Top recipients"
-            recipients={topRecipients}
+            recipients={recipients}
             actions={actions}
           />
         </div>
@@ -59,11 +85,7 @@ export async function getStaticProps({
 }) {
   const ctx = await getCachedContext();
   const scheme = await getScheme(scheme_id);
-  const topRecipients = await getRecipientsChained({
-    scheme_id,
-    order_by: "-amount_sum",
-    limit: 5,
-  });
+  const topRecipients = await getTopRecipients(scheme_id);
 
   return { props: { scheme, topRecipients, ...ctx } };
 }
