@@ -10,7 +10,8 @@ https://farmsubsidy.org. The backend is powered by
 
 ## Data updates
 
-The data is updated constantly. We keep track in this [changelog](CHANGELOG.md)
+The data is updated constantly. We keep track in this
+[changelog](https://github.com/okfde/farmsubsidy-store/blob/main/CHANGELOG.md)
 
 ## Developing the frontent
 
