@@ -6,6 +6,7 @@ import { usePaymentsApi } from "~/lib/api.js";
 export default function PaymentsSearchPage({ ...ctx }) {
   return (
     <SearchPage
+      title="Search payments"
       endpoint="Payments"
       useApi={usePaymentsApi}
       ResultComponent={PaymentsSearchTable}

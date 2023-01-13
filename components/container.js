@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Breadcrumb from "./breadcrumb.js";
+import AuthWidget from "./authWidget.js";
 import styles from "./container.module.scss";
 
 export default function MainContainer({ children }) {
@@ -23,7 +24,7 @@ export function Content({ children }) {
   );
 }
 
-function Widget({ title, children }) {
+export function Widget({ title, children }) {
   return (
     <Card className={styles.widget}>
       <Card.Body>
@@ -50,6 +51,7 @@ function StyledWidget({ header, title, children, footer }) {
 function Sidebar({ children }) {
   return (
     <Col className={styles.sidebar} xl={3} lg={4} md={4} sm={5}>
+      <AuthWidget />
       {children}
       <Widget>
         <div className="text-center">
@@ -64,9 +66,9 @@ function Sidebar({ children }) {
         </div>
         <p>
           FarmSubsidy.org is a project by{" "}
-          <a href="https://fragdenstaat.de">FragDenStaat</a>,
-          the central contact for all questions relating to freedom of
-          information in Germany.
+          <a href="https://fragdenstaat.de">FragDenStaat</a>, the central
+          contact for all questions relating to freedom of information in
+          Germany.
         </p>
       </Widget>
     </Col>

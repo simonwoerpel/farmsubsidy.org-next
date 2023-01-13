@@ -9,13 +9,15 @@ const DEFAULT_DESCRIPTION =
 export default function Layout({ title, description, children }) {
   const router = useRouter();
   const url = `${BASE_URL}${router.asPath}`;
+
+  const siteTitle =
+    (title ? `${title} - ` : "") +
+    "Explore European Common Agricultural Policy farm subsidy payments | FarmSubsidy.org";
+
   return (
     <>
       <Head>
-        <title>
-          {title ? `${title} - ` : ""}Explore European Common Agricultural
-          Policy farm subsidy payments | FarmSubsidy.org
-        </title>
+        <title>{siteTitle}</title>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -41,7 +43,7 @@ export default function Layout({ title, description, children }) {
         />
         <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
         <meta name="msapplication-TileColor" content="#139744" />
-        <meta property="twitter:title" content={title} />
+        <meta property="twitter:title" content={siteTitle} />
         <meta
           name="msapplication-config"
           content="/images/favicon/browserconfig.xml"

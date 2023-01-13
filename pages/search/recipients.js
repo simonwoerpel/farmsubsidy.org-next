@@ -6,6 +6,7 @@ import { useRecipientsApi } from "~/lib/api.js";
 export default function RecipientSearchPage({ ...ctx }) {
   return (
     <SearchPage
+      title="Search recipients"
       endpoint="Recipients"
       useApi={useRecipientsApi}
       ResultComponent={RecipientsSearchTable}

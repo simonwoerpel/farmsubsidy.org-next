@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { CustomPage } from "~/components/pages.js";
 import { Content, Sidebar } from "~/components/container.js";
@@ -14,6 +15,16 @@ import {
 import getCachedContext from "~/lib/context.js";
 import { CountryYearLink } from "~/lib/links.js";
 import { PUBLIC_YEARS } from "~/lib/settings.js";
+import { useAuth } from "~/lib/auth.js";
+
+async function getTopRecipients(country, year) {
+  return await getRecipientsChained({
+    country,
+    year,
+    order_by: "-amount_sum",
+    limit: 5,
+  });
+}
 
 export default function CountryYear({
   country,
@@ -22,13 +33,23 @@ export default function CountryYear({
   topRecipients,
   ...ctx
 }) {
+  const authenticated = useAuth();
+  const [recipients, setRecipients] = useState(topRecipients);
+
+  // reload top recipients if we are authenticated after mount
+  useEffect(() => {
+    if (authenticated) {
+      getTopRecipients(country.country, year).then(setRecipients);
+    }
+  }, [authenticated]);
+
   const actions = [
     <CountryYearLink.Recipients {...{ ...country, year }} key="recipients" />,
     <CountryYearLink.Payments {...{ ...country, year }} key="payments" />,
   ];
 
   return (
-    <CustomPage {...ctx}>
+    <CustomPage title={`${country.name} - ${year}`} {...ctx}>
       <Content>
         <header>
           <h1>{country.name}</h1>
@@ -44,7 +65,7 @@ export default function CountryYear({
 
         <RecipientsTable
           title={`Top recipients in ${year}`}
-          recipients={topRecipients}
+          recipients={recipients}
           columnsExclude={["country"]}
           actions={actions}
         />
@@ -65,7 +86,7 @@ export default function CountryYear({
           country={country.country}
           year={year}
         >
-          received all recipients in {country.name} in {year}
+          received all recipients in <em>{country.name}</em> in {year}
         </AmountWidget>
       </Sidebar>
     </CustomPage>
@@ -88,12 +109,7 @@ export async function getStaticProps({ params: { country, year } }) {
   const ctx = await getCachedContext();
   const countryData = await getCountry(country, { year });
   const countryYears = await getYears({ country });
-  const topRecipients = await getRecipientsChained({
-    country,
-    year,
-    order_by: "-amount_sum",
-    limit: 5,
-  });
+  const topRecipients = await getTopRecipients(country, year);
 
   return {
     props: {

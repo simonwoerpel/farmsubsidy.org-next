@@ -1,15 +1,10 @@
-import Link from "next/link";
 import { Page } from "~/components/pages.js";
 import getCachedContext from "~/lib/context.js";
 import { getPageBySlug, getPageSlugs } from "~/lib/content.js";
 
-export default function MarkdownPage({
-  countries,
-  years,
-  content: { title, html },
-}) {
+export default function MarkdownPage({ content: { title, html }, ...ctx }) {
   return (
-    <Page countries={countries} years={years}>
+    <Page title={title} {...ctx}>
       <header className="page-heading">
         <h1>{title}</h1>
       </header>

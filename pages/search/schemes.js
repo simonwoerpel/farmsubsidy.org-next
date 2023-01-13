@@ -6,6 +6,7 @@ import { useSchemesApi } from "~/lib/api.js";
 export default function SchemesSearchPage({ ...ctx }) {
   return (
     <SearchPage
+      title="Search schemes"
       endpoint="Schemes"
       useApi={useSchemesApi}
       ResultComponent={SchemesTable}

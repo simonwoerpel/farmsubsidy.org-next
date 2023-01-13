@@ -2,14 +2,14 @@ import getCachedContext from "~/lib/context.js";
 import { Page } from "~/components/pages.js";
 import CountriesTable from "~/components/countriesTable.js";
 
-export default function Countries({ countries, years }) {
+export default function Countries({ ...ctx }) {
   return (
-    <Page countries={countries} years={years}>
+    <Page title="All countries" {...ctx}>
       <header className="page-heading">
         <h1>Countries</h1>
       </header>
 
-      <CountriesTable countries={countries} />
+      <CountriesTable countries={ctx.countries} />
     </Page>
   );
 }

@@ -6,6 +6,7 @@ import { useLocationsApi } from "~/lib/api.js";
 export default function LocationsSearchTable({ ...ctx }) {
   return (
     <SearchPage
+      title="Search locations"
       endpoint="Locations"
       useApi={useLocationsApi}
       ResultComponent={LocationsTable}
