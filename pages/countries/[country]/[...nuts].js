@@ -57,6 +57,10 @@ export default function Nuts({ nuts, subNuts, topRecipients, ...ctx }) {
           information requests.
         </p>
 
+        <p><strong>Please note:</strong> This data is based on geocoding of
+        recipient addresses which may be incomplete or inaccurate. There can
+        exist more recipients in this region as listed here.</p>
+
         <RecipientsTable
           title={`Top recipients in ${nutsLabel} (${yearsDisplay})`}
           recipients={recipients}
