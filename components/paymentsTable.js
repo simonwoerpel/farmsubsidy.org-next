@@ -5,6 +5,7 @@ import {
   SchemeLink,
   RecipientLink,
   CountryLink,
+  NutsLink,
 } from "~/lib/links.js";
 import { getPayments } from "~/lib/api.js";
 import { DownloadCSVSync } from "./downloadCsv.js";
@@ -23,6 +24,14 @@ const COLUMNS = {
     selector: (r) => r.country,
     cell: (r) => <CountryLink country={r.country} />,
   },
+  nuts3: {
+    name: "Region",
+    cell: ({ nuts3 }) => <NutsLink {...nuts3} />,
+  },
+  nuts1: {
+    name: "State",
+    cell: ({ nuts1 }) => <NutsLink {...nuts1} />,
+  },
   year: {
     name: "Year",
     selector: (r) => r.year,
@@ -34,7 +43,8 @@ const COLUMNS = {
   scheme: {
     name: "Scheme",
     selector: (r) => r.scheme,
-    cell: (r) => r.scheme ? <SchemeLink id={r.scheme_id} name={r.scheme} /> : null,
+    cell: (r) =>
+      r.scheme ? <SchemeLink id={r.scheme_id} name={r.scheme} /> : null,
     column: "scheme",
     id: "scheme",
     sortable: true,

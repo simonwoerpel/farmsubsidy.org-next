@@ -5,8 +5,14 @@ import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";
 import RecipientsTable from "~/components/recipientsTable.js";
 import CountryYearsTable from "~/components/countryTable.js";
+import NutsTable from "~/components/nutsTable.js";
 import LegalNotice from "~/components/legalNotice.js";
-import { getCountry, getRecipientsChained, getYears } from "~/lib/api.js";
+import {
+  getNuts,
+  getCountry,
+  getRecipientsChained,
+  getYears,
+} from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 import { CountryLink } from "~/lib/links.js";
 import { PUBLIC_YEARS } from "~/lib/settings.js";
@@ -24,6 +30,7 @@ export default function Country({
   country,
   countryYears,
   topRecipients,
+  nuts,
   ...ctx
 }) {
   const authenticated = useAuth();
@@ -76,6 +83,8 @@ export default function Country({
           country={country.country}
           years={countryYears}
         />
+
+        {nuts.length ? <NutsTable title="NUTS regions" nuts={nuts} /> : null}
       </Content>
       <Sidebar>
         <AmountWidget
@@ -104,8 +113,10 @@ export async function getStaticProps({ params: { country } }) {
   const countryData = await getCountry(country);
   const countryYears = await getYears({ country });
   const topRecipients = await getTopRecipients({ country });
+  let nuts = await getNuts(1, { country });
+  nuts = nuts.filter(n => n.country == country)
 
   return {
-    props: { ...ctx, country: countryData, countryYears, topRecipients },
+    props: { ...ctx, country: countryData, countryYears, topRecipients, nuts },
   };
 }

@@ -49,6 +49,15 @@ export default function Index({ ...ctx }) {
           <Link href="/stories">Here is what we have found</Link>.
         </p>
 
+        <p>
+          Please have a look at the{" "}
+          <Link href="https://github.com/okfde/farmsubsidy-store/blob/main/CHANGELOG.md">
+            data changes
+          </Link>{" "}
+          as the platform is updated regulary and some numbers my change over
+          time.
+        </p>
+
         <h3>Information</h3>
 
         <ul>

@@ -13,7 +13,7 @@ import {
   getRecipientsChained,
 } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
-import { CountryYearLink } from "~/lib/links.js";
+import { CountryYearLink, CountryLink } from "~/lib/links.js";
 import { PUBLIC_YEARS } from "~/lib/settings.js";
 import { useAuth } from "~/lib/auth.js";
 
@@ -59,8 +59,8 @@ export default function CountryYear({
         <p>
           These pages list farm subsidy payments made in{" "}
           <strong>{country.name}</strong> for {year} as published directly by
-          the government of {country.name} or sourced via freedom of information
-          requests.
+          the government of <CountryLink {...country} /> or sourced via freedom
+          of information requests.
         </p>
 
         <RecipientsTable

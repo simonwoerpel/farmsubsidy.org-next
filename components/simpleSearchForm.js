@@ -51,7 +51,7 @@ export default function SimpleSearchForm({ size, withoutHints }) {
           e.g.{" "}
           {SEARCH_HINTS.map((q, i) => (
             <span key={q}>
-              <Link href={`/search?q=${q}`} legacyBehavior>{q}</Link>
+              <Link href={`/search/recipients?q=${q}`} legacyBehavior>{q}</Link>
               {i + 1 < SEARCH_HINTS.length && ", "}
             </span>
           ))}

@@ -20,6 +20,9 @@ const ROUTES = {
     url: CountryLink.getUrl({ country }),
   }),
   "/countries/[country]/[year]": ({ year }) => ({ label: year }),
+  "/countries/[country]/[...nuts]": ({ nuts }) => ({
+    label: `NUTS ${nuts.join("/")}`,
+  }),
   "/schemes": () => ({ url: "/schemes", label: "Schemes" }),
   "/schemes/[...param]": ({ param }) => ({
     label: param?.length > 1 ? param[1].replace(/-/g, " ") : "Scheme",

@@ -17,7 +17,7 @@ import { getAggregation } from "~/lib/api.js";
 import { PUBLIC_YEARS } from "~/lib/settings.js";
 
 const ActiveFilters = ({ handleClear, filters }) => {
-  const visibleFilters = ["year", "country", "location", "scheme"];
+  const visibleFilters = ["year", "country", "location", "scheme", "nuts1", "nuts2", "nuts3"];
   return (
     <Stack direction="horizontal" gap={1}>
       {Object.entries(filters)
@@ -42,6 +42,9 @@ const ResultHeadline = ({
   country,
   year,
   scheme,
+  nuts1,
+  nuts2,
+  nuts3,
   location,
   loading,
 }) =>
@@ -77,6 +80,24 @@ const ResultHeadline = ({
         <>
           {" "}
           in scheme <span className="text-muted">{shorten(scheme)}</span>
+        </>
+      )}
+      {!!nuts1 && (
+        <>
+          {" "}
+          in nuts region <span className="text-muted">{nuts1}</span>
+        </>
+      )}
+      {!!nuts2 && (
+        <>
+          {" "}
+          in nuts region <span className="text-muted">{nuts2}</span>
+        </>
+      )}
+      {!!nuts3 && (
+        <>
+          {" "}
+          in nuts region <span className="text-muted">{nuts3}</span>
         </>
       )}
     </h4>
