@@ -5,6 +5,7 @@ import {
   CountryLink,
   YearLink,
   LocationLink,
+  NutsLink,
 } from "~/lib/links.js";
 import { Numeric } from "./util.js";
 import ApiTable from "./apiTable.js";
@@ -34,6 +35,14 @@ const COLUMNS = {
     column: "total_payments",
     id: "total_payments",
     sortable: true,
+  },
+  nuts3: {
+    name: "Region",
+    cell: ({ nuts3 }) => <>{nuts3.map(n => <NutsLink key={n.code} {...n} />)}</>
+  },
+  nuts1: {
+    name: "State",
+    cell: ({ nuts1 }) => <>{nuts1.map(n => <NutsLink key={n.code} {...n} />)}</>
   },
   country: {
     name: "Country",
