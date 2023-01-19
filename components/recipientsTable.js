@@ -38,11 +38,11 @@ const COLUMNS = {
   },
   nuts3: {
     name: "Region",
-    cell: ({ nuts3 }) => <>{nuts3.map(n => <NutsLink key={n.code} {...n} />)}</>
+    cell: ({ nuts3 }) => <>{nuts3?.map(n => <NutsLink key={n.code} {...n} />)}</>
   },
   nuts1: {
     name: "State",
-    cell: ({ nuts1 }) => <>{nuts1.map(n => <NutsLink key={n.code} {...n} />)}</>
+    cell: ({ nuts1 }) => <>{nuts1?.map(n => <NutsLink key={n.code} {...n} />)}</>
   },
   country: {
     name: "Country",
