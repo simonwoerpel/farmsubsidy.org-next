@@ -39,7 +39,19 @@ export default function Index({ ...ctx }) {
           make this data available in a way that is useful to European citizens.
         </p>
 
-        <h3>December 2022</h3>
+        <h3>Recent updates</h3>
+
+        <h4>November 2023</h4>
+
+        <p>
+          For the <a href="https://climatearena.eu/">Climate Arena
+          Conference</a> in Vienna, Nov. 2023, we updated most of the countries
+          data to include the recipients until 2022. Due to legal reasons, the
+          last two recent years are public acessible, which is from now on 
+          <strong> 2021 and 2022</strong>.
+        </p>
+
+        <h4>December 2022</h4>
 
         <p>
           In cooperation with WDR, NDR, Süddeutsche Zeitung, Correctiv, Der
