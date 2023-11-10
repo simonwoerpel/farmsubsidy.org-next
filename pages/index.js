@@ -41,6 +41,15 @@ export default function Index({ ...ctx }) {
 
         <h3>Recent updates</h3>
 
+        <p>
+          Please have a look at the{" "}
+          <Link href="https://github.com/okfde/farmsubsidy-store/blob/main/CHANGELOG.md">
+            data changes
+          </Link>{" "}
+          as the platform is updated regulary and some numbers my change over
+          time.
+        </p>
+
         <h4>November 2023</h4>
 
         <p>
@@ -59,15 +68,6 @@ export default function Index({ ...ctx }) {
           The Money and Gazeta Wyborcza, FragDenStaat analysed the data and
           published it jointly in December 2022.{" "}
           <Link href="/stories">Here is what we have found</Link>.
-        </p>
-
-        <p>
-          Please have a look at the{" "}
-          <Link href="https://github.com/okfde/farmsubsidy-store/blob/main/CHANGELOG.md">
-            data changes
-          </Link>{" "}
-          as the platform is updated regulary and some numbers my change over
-          time.
         </p>
 
         <h3>Information</h3>
