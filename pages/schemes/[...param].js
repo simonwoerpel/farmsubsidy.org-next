@@ -71,11 +71,14 @@ export default function Scheme({ scheme, topRecipients, ...ctx }) {
 }
 
 export async function getStaticPaths() {
-  const { results: schemes } = await getSchemes({ limit: 4000 });
+  const { results: schemes } = await getSchemes({
+    limit: 25,
+    order_by: "-amount_sum",
+  });
   const paths = schemes.map((s) => ({
     params: { param: SchemeLink.getParams(s) },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({
