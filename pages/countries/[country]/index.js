@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
 import { CustomPage } from "~/components/pages.js";
 import { Content, Sidebar } from "~/components/container.js";
 import { AmountWidget } from "~/components/widgets.js";

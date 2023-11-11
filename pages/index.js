@@ -39,15 +39,7 @@ export default function Index({ ...ctx }) {
           make this data available in a way that is useful to European citizens.
         </p>
 
-        <h3>December 2022</h3>
-
-        <p>
-          In cooperation with WDR, NDR, Süddeutsche Zeitung, Correctiv, Der
-          Standard, IrpiMedia, Reporter.lu, Reporters United, Expresso, Follow
-          The Money and Gazeta Wyborcza, FragDenStaat analysed the data and
-          published it jointly in December 2022.{" "}
-          <Link href="/stories">Here is what we have found</Link>.
-        </p>
+        <h3>Recent updates</h3>
 
         <p>
           Please have a look at the{" "}
@@ -56,6 +48,26 @@ export default function Index({ ...ctx }) {
           </Link>{" "}
           as the platform is updated regulary and some numbers my change over
           time.
+        </p>
+
+        <h4>November 2023</h4>
+
+        <p>
+          For the <a href="https://climatearena.eu/">Climate Arena
+          Conference</a> in Vienna, Nov. 2023, we updated most of the countries
+          data to include the recipients until 2022. Due to legal reasons, the
+          last two recent years are public acessible, which is from now on 
+          <strong> 2021 and 2022</strong>.
+        </p>
+
+        <h4>December 2022</h4>
+
+        <p>
+          In cooperation with WDR, NDR, Süddeutsche Zeitung, Correctiv, Der
+          Standard, IrpiMedia, Reporter.lu, Reporters United, Expresso, Follow
+          The Money and Gazeta Wyborcza, FragDenStaat analysed the data and
+          published it jointly in December 2022.{" "}
+          <Link href="/stories">Here is what we have found</Link>.
         </p>
 
         <h3>Information</h3>

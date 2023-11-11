@@ -70,6 +70,7 @@ function Sidebar({ children }) {
           contact for all questions relating to freedom of information in
           Germany.
         </p>
+        <p>🧑‍🔧👷 <a href="https://investigativedata.io">||)·|()</a></p>
       </Widget>
     </Col>
   );

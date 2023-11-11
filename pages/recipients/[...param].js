@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -7,13 +8,30 @@ import { AmountWidget } from "~/components/widgets.js";
 import LoadingPlaceholder from "~/components/placeholder.js";
 import RecipientPaymentsTable from "~/components/paymentsTable.js";
 import LegalNotice from "~/components/legalNotice.js";
-import { Numeric } from "~/components/util.js";
 import { CountryLink, LocationLink, RecipientLink } from "~/lib/links.js";
 import { getRecipients, getRecipient, getPayments } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
+import { useAuth } from "~/lib/auth.js";
 
-export default function Recipient({ recipient, payments = [], ...ctx }) {
+export default function Recipient({
+  recipientData,
+  paymentsData = [],
+  ...ctx
+}) {
   const router = useRouter();
+  const authenticated = useAuth();
+  const [payments, setPayments] = useState(paymentsData);
+  const [recipient, setRecipient] = useState(recipientData);
+
+  // reload payments if we are authenticated after mount
+  useEffect(() => {
+    if (authenticated) {
+      getPayments({ recipient_id: recipientData.id }).then((r) =>
+        setPayments(r.results)
+      );
+      getRecipient(recipientData.id).then(setRecipient);
+    }
+  }, [authenticated]);
 
   return (
     <CustomPage title={recipient ? recipient.name[0] : null} {...ctx}>
@@ -113,8 +131,8 @@ export async function getStaticProps({
   },
 }) {
   const ctx = await getCachedContext();
-  const recipient = await getRecipient(recipient_id);
-  const { results: payments } = await getPayments({ recipient_id });
+  const recipientData = await getRecipient(recipient_id);
+  const { results: paymentsData } = await getPayments({ recipient_id });
 
-  return { props: { recipient, payments, ...ctx } };
+  return { props: { recipientData, paymentsData, ...ctx } };
 }
