@@ -70,7 +70,26 @@ function Sidebar({ children }) {
           contact for all questions relating to freedom of information in
           Germany.
         </p>
-        <p>🧑‍🔧👷 <a href="https://investigativedata.io">||)·|()</a></p>
+        <div className="text-center" style={{ maxWidth: 150, paddingTop: 16 }}>
+          <a href="https://journalismarena.eu">
+            <Image
+              width={151}
+              height={98}
+              fill={false}
+              src="/images/arena_logo.png"
+              alt="journalismarena.eu"
+            />
+          </a>
+        </div>
+        <p>
+          The project is supported by{" "}
+          <a href="https://journalismarena.eu/">
+            Arena for journalism in Europe
+          </a>
+        </p>
+        <p>
+          🧑‍🔧👷 <a href="https://investigativedata.io">||)·|()</a>
+        </p>
       </Widget>
     </Col>
   );
