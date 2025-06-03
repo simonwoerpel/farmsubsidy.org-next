@@ -26,8 +26,15 @@ a spanner in the works. We are only allowed to show the names of subsidy
 recipients from the past two years, after that we have to depublish the
 information.
 
-Scientists and journalists who would like to use the complete data can contact
-us: [farmsubsidy@okfn.de](mailto:farmsubsidy@okfn.de)
+To get access to the complete data as researcher or journalist, please print out the [data usage agreement](/farmsubsidy_datausage_agreement_2023_EN.pdf), sign it and send the paper version via post to:
+
+Open Knowledge Foundation Deutschland e.V.
+
+Singerstraße 109
+
+D-10179 Berlin
+
+As soon as we received the original document we'll send you the login by email. You can also scan the signed document and send it to [farmsubsidy@okfn.de](mailto:farmsubsidy@okfn.de) beforehand so that you receive your login data earlier. Nevertheless, you have to send the original to the adress above, too.
 
 
 ### What did we do with the data?

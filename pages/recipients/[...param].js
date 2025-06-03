@@ -9,7 +9,7 @@ import LoadingPlaceholder from "~/components/placeholder.js";
 import RecipientPaymentsTable from "~/components/paymentsTable.js";
 import LegalNotice from "~/components/legalNotice.js";
 import { CountryLink, LocationLink, RecipientLink } from "~/lib/links.js";
-import { getRecipients, getRecipient, getPayments } from "~/lib/api.js";
+import { getRecipients, getRecipient, getPayments, getAuthenticatedStatus } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 import { useAuth } from "~/lib/auth.js";
 
@@ -34,18 +34,18 @@ export default function Recipient({
   }, [authenticated]);
 
   return (
-    <CustomPage title={recipient ? recipient.name[0] : null} {...ctx}>
+    <CustomPage title={recipient?.name ? recipient.name[0] : null} {...ctx}>
       <Content>
         <header>
           <LoadingPlaceholder isLoading={router.isLoading}>
-            <h1>{recipient && recipient.name[0]}</h1>
+            <h1>{recipient?.name && recipient.name[0]}</h1>
           </LoadingPlaceholder>
         </header>
 
         <LoadingPlaceholder as="p" isLoading={router.isLoading}>
           <p>
-            {recipient && recipient.name[0]} is a recipient of farm subsidies
-            from {recipient && <CountryLink country={recipient.country} />}.
+            {recipient?.name && recipient.name[0]} is a recipient of farm subsidies
+            from {recipient && <CountryLink country={recipient?.country} />}.
           </p>
         </LoadingPlaceholder>
 
@@ -55,7 +55,7 @@ export default function Recipient({
         </LoadingPlaceholder>
       </Content>
       <Sidebar>
-        {recipient && (
+        {recipient?.name && (
           <>
             <AmountWidget title="Total amount" value={recipient.amount_sum}>
               received <strong>{recipient.name[0]}</strong> from{" "}
@@ -131,7 +131,7 @@ export async function getStaticProps({
   },
 }) {
   const ctx = await getCachedContext();
-  const recipientData = await getRecipient(recipient_id);
+  const recipientData = await getRecipient(recipient_id) || {id: recipient_id};
   const { results: paymentsData } = await getPayments({ recipient_id });
 
   return { props: { recipientData, paymentsData, ...ctx } };
