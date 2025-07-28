@@ -14,7 +14,7 @@ export default function Footer() {
             <ul className="list-unstyled">
               <li>
                 <Link href="/legal">
-                  Legal / Impressum
+                  Legal / Impressum / Privacy Policy
                 </Link>
               </li>
               <li>
