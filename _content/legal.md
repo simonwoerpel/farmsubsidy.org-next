@@ -64,3 +64,8 @@ bugs.
 [Please see here for legal details/impressum](https://fragdenstaat.de/impressum/)
 
 
+
+### Privacy Policy (Germany)
+
+[Please see here for the privacy policy](https://fragdenstaat.de/datenschutzerklaerung/)
+
