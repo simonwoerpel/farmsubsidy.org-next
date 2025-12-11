@@ -9,7 +9,7 @@ import LegalNotice from "~/components/legalNotice.js";
 import { getNuts, getRecipientsChained } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 import { NutsLink, CountryLink } from "~/lib/links.js";
-import { PUBLIC_YEARS } from "~/lib/settings.js";
+import { PUBLIC_YEARS, DISABLE_PRERENDER } from "~/lib/settings.js";
 import { useAuth } from "~/lib/auth.js";
 
 async function getTopRecipients(level, nuts) {
@@ -87,6 +87,9 @@ export default function Nuts({ nuts, subNuts, topRecipients, ...ctx }) {
 }
 
 export async function getStaticPaths() {
+  if (DISABLE_PRERENDER) {
+    return { paths: [], fallback: "blocking" };
+  }
   const nuts = await Promise.all([getNuts(1), getNuts(2), getNuts(3)]);
   const paths = nuts.flat().map(({ country, path }) => ({
     params: { country, nuts: path.substr(3).split("/") },

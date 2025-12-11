@@ -9,6 +9,7 @@ import { getSchemes, getScheme, getRecipientsChained } from "~/lib/api.js";
 import { SchemeLink } from "~/lib/links.js";
 import getCachedContext from "~/lib/context.js";
 import { useAuth } from "~/lib/auth.js";
+import { DISABLE_PRERENDER } from "~/lib/settings.js";
 import LoadingPlaceholder from "~components/placeholder";
 
 async function getTopRecipients(scheme_id) {
@@ -82,6 +83,9 @@ export default function Scheme({ scheme, topRecipients, ...ctx }) {
 }
 
 export async function getStaticPaths() {
+  if (DISABLE_PRERENDER) {
+    return { paths: [], fallback: true };
+  }
   const { results: schemes } = await getSchemes({
     limit: 25,
     order_by: "-amount_sum",

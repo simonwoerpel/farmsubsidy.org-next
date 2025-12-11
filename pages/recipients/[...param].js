@@ -12,6 +12,7 @@ import { CountryLink, LocationLink, RecipientLink } from "~/lib/links.js";
 import { getRecipients, getRecipient, getPayments, getAuthenticatedStatus } from "~/lib/api.js";
 import getCachedContext from "~/lib/context.js";
 import { useAuth } from "~/lib/auth.js";
+import { DISABLE_PRERENDER } from "~/lib/settings.js";
 
 export default function Recipient({
   recipientData,
@@ -105,6 +106,9 @@ export default function Recipient({
 }
 
 export async function getStaticPaths() {
+  if (DISABLE_PRERENDER) {
+    return { paths: [], fallback: true };
+  }
   // pre-render the top recipients for each country
   const { countries } = await getCachedContext();
   const recipients = await Promise.all(
