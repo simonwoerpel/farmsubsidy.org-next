@@ -28,9 +28,10 @@ export default function LegalNotice({ variant = "secondary" }) {
         agreement</a>, sign it and send the paper version via post to:
       </p>
       <p>
-        Open Knowledge Foundation Deutschland e.V.<br />
-        Singerstraße 109<br />
-        D-10179 Berlin
+        Open Knowledge Foundation<br />
+        FragDenStaat<br />
+        Moosdorfstr. 7-9<br />
+        D-12435 Berlin<br />
       </p>
       <p>
         As soon as we received the original document we&apos;ll send you the
